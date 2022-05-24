@@ -21,7 +21,7 @@ namespace Unity3rdPersonDemo.StateMachine.States
         
         public void Tick(float deltaTime)
         {
-            StateMachine.LocomotionComponent.ProcessInputDrivenLocomotion(deltaTime);
+            StateMachine.Locomotion.Process<PlayerFreeLookState>(deltaTime);
         }
 
         public void Exit()

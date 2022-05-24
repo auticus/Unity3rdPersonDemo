@@ -19,17 +19,18 @@ namespace Unity3rdPersonDemo.StateMachine
         [field: SerializeField] public Animator Animator { get; private set; }
         [field: SerializeField] public CharacterController CharacterController { get; private set; }
         [field: SerializeField] public float FreeLookMovementSpeed { get; private set; }
+        [field: SerializeField] public float TargetingMovementSpeed { get; private set; }
         [field: SerializeField] public float FreeLookRotationDamping { get; private set; }
         [field: SerializeField] public Targeter ObjectTargeter { get; private set; }
         [field: SerializeField] public ForceReceiver Force { get; private set; }
         public Transform MainCameraTransform { get; private set; }
-        public Locomotion LocomotionComponent { get; private set; }
+        public PlayerControlledLocomotion Locomotion { get; private set; }
 
         private void Start()
         {
             MainCameraTransform = Camera.main.transform;
             SwitchState(new PlayerFreeLookState(this));
-            LocomotionComponent = new Locomotion(this);
+            Locomotion = new PlayerControlledLocomotion(this);
         }
     }
 }

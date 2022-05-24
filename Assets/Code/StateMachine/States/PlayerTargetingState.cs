@@ -26,8 +26,8 @@ namespace Unity3rdPersonDemo.StateMachine.States
                 StateMachine.SwitchState(new PlayerFreeLookState(StateMachine));
                 return;
             }
-
-            StateMachine.LocomotionComponent.FaceTarget(StateMachine.ObjectTargeter.CurrentTarget);
+            StateMachine.Locomotion.Process<PlayerTargetingState>(deltaTime);
+            StateMachine.Locomotion.FaceTarget(StateMachine.ObjectTargeter.CurrentTarget);
         }
 
         public void Exit()

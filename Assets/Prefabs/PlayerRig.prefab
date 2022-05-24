@@ -309,16 +309,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    - target: {fileID: 6710560927653381055, guid: bd6a0ca4669c2064eb8ca16ab81f4bbe,
-        type: 3}
-      propertyPath: <Force>k__BackingField
-      value: 
-      objectReference: {fileID: 1192652686744315790}
-    - target: {fileID: 8185053446664892895, guid: bd6a0ca4669c2064eb8ca16ab81f4bbe,
-        type: 3}
-      propertyPath: m_Name
-      value: Targeter
-      objectReference: {fileID: 0}
     - target: {fileID: 8515896442201265998, guid: bd6a0ca4669c2064eb8ca16ab81f4bbe,
         type: 3}
       propertyPath: targetingGroup
@@ -338,31 +328,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 6862494273898905536}
   m_PrefabAsset: {fileID: 0}
---- !u!143 &4536730752144078112 stripped
-CharacterController:
-  m_CorrespondingSourceObject: {fileID: 7046390397903702752, guid: bd6a0ca4669c2064eb8ca16ab81f4bbe,
-    type: 3}
-  m_PrefabInstance: {fileID: 6862494273898905536}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &7144520284280626663 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4330797591441433127, guid: bd6a0ca4669c2064eb8ca16ab81f4bbe,
-    type: 3}
-  m_PrefabInstance: {fileID: 6862494273898905536}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1192652686744315790
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7144520284280626663}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 90a63a43e3b58ff41819ebe0fb5149c9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  controller: {fileID: 4536730752144078112}
 --- !u!4 &7500004494135427156 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3974748240089448340, guid: bd6a0ca4669c2064eb8ca16ab81f4bbe,
