@@ -21,7 +21,7 @@ namespace Unity3rdPersonDemo.Characters
                 return;
             }
 
-            _character.Animator.SetFloat(FreeLookSpeedHash, Locomotion.RUNNING, Locomotion.DAMP_SMOOTH_TIME, deltaTime);
+            _character.Animator.SetFloat(FreeLookSpeedHash, Locomotion.RUN_FORWARD, Locomotion.DAMP_SMOOTH_TIME, deltaTime);
             HandleMovement(movement, deltaTime);
             HandleRotation(movement, deltaTime);
         }

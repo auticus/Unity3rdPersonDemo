@@ -160,3 +160,28 @@ The Targeter object will hold a reference to this Targeting Group object.
 
 FORCE RECEIVER
 handles gravity, knockbacks, etc anything that strikes the player
+
+TARGETING ANIMATIONS
+PlayerRig >> Animator - find the Targeting Animator (moving forward backward and straffing left & right)
+Targeting Blend Tree (Blend Type is 1D, change 2D Freeform Directional) - now it wants 2 parameters (2 dimensional)
+Go to parameters >> add float >> TargetingForwardSpeed (1 and -1)
+>> add float >> TargetingRightSpeed (1 and -1)
+
+WEIRD EDITOR ISSUE - the second item is listed as NaN - add a number in that field and that fixes it
+
+Then add your motions
+>>Idle when Pos X and Y are 0
+>>Running when Y is 1
+>>Running when Y is -1 (need a backpedal animation) and change animation speed to -1 (plays running animation in reverse)
+>>Animations folder >> Grab Left & Right Strafe and duplicate them to delete the box so the animations are now out 
+!!(make sure LoopTime is true so it loops)!!
+
+ISSUE TO FIX WITH MIXAMO
+The animation (both straffes) will move off to the side.  We don't want to move the player via animation so we have to go to Window >> Animation >> Animation
+>> Hips: Position >> Remove movement of x and z so it doesn't move
+
+BACK TO BLEND TREE FOR TARGETING
+>> New Motion >> LeftStrafe >> x = -1 Y = 0
+>> New MOtion >> RightStrafe >> x = 1 Y = 0
+
+Your blend tree will now show up like a diamond with a point up, down, left and right.  This is a 2D Blend tree.  You can even have items in between those points.

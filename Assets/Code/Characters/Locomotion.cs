@@ -10,7 +10,10 @@ namespace Unity3rdPersonDemo.Characters
     {
         public const float DAMP_SMOOTH_TIME = 0.1f;
         public const int IDLE = 0;
-        public const int RUNNING = 1;
+        public const int RUN_FORWARD = 1;
+        public const int RUN_BACKWARD = -1;
+        public const int STRAFE_RIGHT = 1;
+        public const int STRAFE_LEFT = -1;
         protected readonly IMoveableState Character;
 
         protected Locomotion(IMoveableState character)
