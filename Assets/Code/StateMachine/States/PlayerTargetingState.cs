@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Unity3rdPersonDemo.Combat.Targeting;
+using UnityEngine;
 
 namespace Unity3rdPersonDemo.StateMachine.States
 {
@@ -14,10 +15,11 @@ namespace Unity3rdPersonDemo.StateMachine.States
         public void Enter()
         {
             StateMachine.InputReader.OnTargetingClicked += InputReaderOnTargetingClicked;
+            StateMachine.InputReader.OnAttackClicked += InputReaderOnAttackClicked;
             StateMachine.Animator.Play(TargetingCameraBlendTreeHash);
             Debug.Log($"Targeting: {StateMachine.ObjectTargeter.CurrentTarget.name}");
         }
-
+        
         public void Tick(float deltaTime)
         {
             //if we're in target mode but we lose our target, switch state out to free look state
@@ -33,6 +35,7 @@ namespace Unity3rdPersonDemo.StateMachine.States
         public void Exit()
         {
             StateMachine.InputReader.OnTargetingClicked -= InputReaderOnTargetingClicked;
+            StateMachine.InputReader.OnAttackClicked -= InputReaderOnAttackClicked;
             StateMachine.ObjectTargeter.ClearTarget();
             Debug.Log("Cleared Target");
         }
@@ -42,6 +45,12 @@ namespace Unity3rdPersonDemo.StateMachine.States
         {
             //todo: as in playerfreelookstate - find a way to cache these instead of creating new ones all the time
             StateMachine.SwitchState(new PlayerFreeLookState(StateMachine));
+        }
+
+        private void InputReaderOnAttackClicked(AttackTypes attack)
+        {
+            //todo: the type of attack should be sent into the attack state to let it know what its starting with
+            StateMachine.SwitchState(new PlayerAttackingState(StateMachine));
         }
     }
 }
