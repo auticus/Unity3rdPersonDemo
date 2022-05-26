@@ -1,4 +1,4 @@
-﻿using Unity3rdPersonDemo.Combat.Targeting;
+﻿using Unity3rdPersonDemo.Combat;
 using UnityEngine;
 
 namespace Unity3rdPersonDemo.StateMachine.States
@@ -47,10 +47,10 @@ namespace Unity3rdPersonDemo.StateMachine.States
             StateMachine.SwitchState(new PlayerFreeLookState(StateMachine));
         }
 
-        private void InputReaderOnAttackClicked(AttackTypes attack)
+        private void InputReaderOnAttackClicked(AttackCategories attack)
         {
             //todo: the type of attack should be sent into the attack state to let it know what its starting with
-            StateMachine.SwitchState(new PlayerAttackingState(StateMachine));
+            StateMachine.SwitchState(new PlayerAttackingState(StateMachine, attack));
         }
     }
 }

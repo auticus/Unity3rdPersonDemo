@@ -1,5 +1,5 @@
 ﻿using System;
-using Unity3rdPersonDemo.Combat.Targeting;
+using Unity3rdPersonDemo.Combat;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -12,7 +12,7 @@ namespace Unity3rdPersonDemo.Input
         public event Action OnInputJump;
         public event Action OnInputDodge;
         public event Action OnTargetingClicked;
-        public event Action<AttackTypes> OnAttackClicked;
+        public event Action<AttackCategories> OnAttackClicked;
 
         private Controls _controls;
 
@@ -61,7 +61,7 @@ namespace Unity3rdPersonDemo.Input
         public void OnAttack(InputAction.CallbackContext context)
         {
             if (!context.performed) return;
-            OnAttackClicked?.Invoke(AttackTypes.Basic);
+            OnAttackClicked?.Invoke(AttackCategories.Basic);
         }
     }
 }
