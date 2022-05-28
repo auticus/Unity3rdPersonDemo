@@ -1,7 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Unity3rdPersonDemo.Characters;
 using Unity3rdPersonDemo.Combat;
+using Unity3rdPersonDemo.Combat.Targeting;
 using UnityEngine;
 
 namespace Unity3rdPersonDemo.StateMachine.States
@@ -11,23 +11,50 @@ namespace Unity3rdPersonDemo.StateMachine.States
         private readonly IList<AttackAnimation> _attackAnimationChain;
         private readonly int _currentAttackChainIndex;
         private readonly AttackCategories _currentAttackCategory;
+        private readonly Target _currentTarget;
         private const string ATTACK_TAG = "Attack";
         private const int DEFAULT_LAYER = 0;
         private const int FIRST_ATTACK_INDEX = 0;
         private float _lastAnimationTime;
         private readonly GameStates _exitStateType;
 
-        public PlayerAttackingState(PlayerStateMachine stateMachine, GameStates exitState, AttackCategories attack) 
-            : this(stateMachine, exitState, attack, FIRST_ATTACK_INDEX)
+        /// <summary>
+        /// Constructs the <see cref="PlayerAttackingState"/> object and uses the first attack in the combo chain.
+        /// </summary>
+        /// <param name="stateMachine">The state machine holding the character data.</param>
+        /// <param name="exitState">The state that will be transitioned into upon exit of this state.</param>
+        /// <param name="attack">The attack category that this state belongs to.</param>
+        public PlayerAttackingState(PlayerStateMachine stateMachine, GameStates exitState, AttackCategories attack)
+            : this(stateMachine, exitState, attack, FIRST_ATTACK_INDEX, currentTarget: null)
         { }
 
-        public PlayerAttackingState(PlayerStateMachine stateMachine, GameStates exitState,  AttackCategories attack, int attackIndex) 
+        /// <summary>
+        /// Constructs the <see cref="PlayerAttackingState"/> object and uses the first attack in the combo chain.
+        /// </summary>
+        /// <param name="stateMachine">The state machine holding the character data.</param>
+        /// <param name="exitState">The state that will be transitioned into upon exit of this state.</param>
+        /// <param name="attack">The attack category that this state belongs to.</param>
+        /// <param name="currentTarget">The current target that the character is focused on.</param>
+        public PlayerAttackingState(PlayerStateMachine stateMachine, GameStates exitState, AttackCategories attack, Target currentTarget) 
+            : this(stateMachine, exitState, attack, FIRST_ATTACK_INDEX, currentTarget)
+        { }
+
+        /// <summary>
+        /// Constructs the <see cref="PlayerAttackingState"/> object.
+        /// </summary>
+        /// <param name="stateMachine">The state machine holding the character data.</param>
+        /// <param name="exitState">The state that will be transitioned into upon exit of this state.</param>
+        /// <param name="attack">The attack category that this state belongs to.</param>
+        /// <param name="attackIndex">The specific attack in the attack chain that this state belongs to.</param>
+        /// <param name="currentTarget">The current target that the character is focused on.</param>
+        public PlayerAttackingState(PlayerStateMachine stateMachine, GameStates exitState,  AttackCategories attack, int attackIndex, Target currentTarget) 
             : base(stateMachine)
         {
             _attackAnimationChain = AttackAnimations.GetAttacksByCategory(attack);
             _currentAttackChainIndex = attackIndex;
             _currentAttackCategory = attack;
             _exitStateType = exitState;
+            _currentTarget = currentTarget;
         }
 
         public void Enter()
@@ -76,7 +103,7 @@ namespace Unity3rdPersonDemo.StateMachine.States
             }
 
             //advance the character animation
-            StateMachine.SwitchState(new PlayerAttackingState(StateMachine, _exitStateType, playerAttackOption, _currentAttackChainIndex + 1));
+            StateMachine.SwitchState(new PlayerAttackingState(StateMachine, _exitStateType, playerAttackOption, _currentAttackChainIndex + 1, _currentTarget));
         }
 
         private float GetCurrentAnimationCompletedTime()

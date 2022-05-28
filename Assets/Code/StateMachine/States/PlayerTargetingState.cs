@@ -1,5 +1,6 @@
 ﻿using Unity3rdPersonDemo.Characters;
 using Unity3rdPersonDemo.Combat;
+using Unity3rdPersonDemo.Combat.Targeting;
 using UnityEngine;
 
 namespace Unity3rdPersonDemo.StateMachine.States
@@ -10,9 +11,11 @@ namespace Unity3rdPersonDemo.StateMachine.States
     public class PlayerTargetingState : PlayerBaseState, IGameState
     {
         private readonly int TargetingCameraBlendTreeHash = Animator.StringToHash("TargetingBlendTree");
+        private bool _doNotClearTargetOnExit = false;
+
         public PlayerTargetingState(PlayerStateMachine stateMachine) : base(stateMachine)
         { }
-
+        
         public void Enter()
         {
             StateMachine.InputReader.OnTargetingClicked += InputReaderOnTargetingClicked;
@@ -36,8 +39,11 @@ namespace Unity3rdPersonDemo.StateMachine.States
         {
             StateMachine.InputReader.OnTargetingClicked -= InputReaderOnTargetingClicked;
             StateMachine.InputReader.OnAttackClicked -= InputReaderOnAttackClicked;
-            StateMachine.ObjectTargeter.ClearTarget();
-            Debug.Log("Cleared Target");
+            if (!_doNotClearTargetOnExit)
+            {
+                StateMachine.ObjectTargeter.ClearTarget();
+                Debug.Log("Cleared Target");
+            }
         }
 
         //if targeting is already active and the user clicks on targeting again - that clears it
@@ -48,6 +54,7 @@ namespace Unity3rdPersonDemo.StateMachine.States
 
         private void InputReaderOnAttackClicked(AttackCategories attack)
         {
+            _doNotClearTargetOnExit = true;
             StateMachine.SwitchState(new PlayerAttackingState(StateMachine, GameStates.Targeting, attack));
         }
     }

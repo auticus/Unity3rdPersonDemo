@@ -17,9 +17,9 @@ namespace Unity3rdPersonDemo.Combat
         {
             AttackData = new AttackAnimation[]
             {
-                AttackAnimation.BuildAnimation(AttackCategories.Basic, "Attack1", 0, crossFadeBlend: 0.1f, comboAttackWindow: 0.8f),
-                AttackAnimation.BuildAnimation(AttackCategories.Basic, "Attack2", 1, crossFadeBlend: 0.1f, comboAttackWindow: 0.8f),
-                AttackAnimation.BuildAnimation(AttackCategories.Basic, "Attack3", 2, crossFadeBlend: 0.1f, comboAttackWindow : 0.8f)
+                AttackAnimation.BuildAnimation(AttackCategories.Basic, "Attack1", 0, crossFadeBlend: 0.1f, comboAttackWindow: 0.6f),
+                AttackAnimation.BuildAnimation(AttackCategories.Basic, "Attack2", 1, crossFadeBlend: 0.1f, comboAttackWindow: 0.5f),
+                AttackAnimation.BuildAnimation(AttackCategories.Basic, "Attack3", 2, crossFadeBlend: 0.1f, comboAttackWindow : 0f)
             };
         }
 
