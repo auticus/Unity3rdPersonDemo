@@ -1,23 +1,22 @@
-﻿using Unity3rdPersonDemo.StateMachine.States;
+﻿using System.Collections.Generic;
 
 namespace Unity3rdPersonDemo.Characters
 {
-    public class PlayerControlledLocomotion : Locomotion
+    public class PlayerControlledLocomotion
     {
-        private readonly PlayerFreeLookLocomotion _playerFreeLookLocomotion;
-        private readonly PlayerTargetingLocomotion _playerTargetingLocomotion;
+        private readonly Dictionary<LocomotionTypes, ILocomotion> _locomotionMap;
 
-        public PlayerControlledLocomotion(IMoveableState character) : base(character)
+        public PlayerControlledLocomotion(IMoveableState character)
         {
-            _playerFreeLookLocomotion = new PlayerFreeLookLocomotion(character);
-            _playerTargetingLocomotion = new PlayerTargetingLocomotion(character);
+            _locomotionMap = new Dictionary<LocomotionTypes, ILocomotion>
+            {
+                { LocomotionTypes.FreeLook, new PlayerFreeLookLocomotion(character) },
+                { LocomotionTypes.Targeting, new PlayerTargetingLocomotion(character) },
+                { LocomotionTypes.Attacking, new PlayerAttackingLocomotion(character) }
+            };
         }
 
-        /// <inheritdoc/>
-        public override void Process<T>(float deltaTime)
-        {
-            if (typeof(T) == typeof(PlayerFreeLookState)) _playerFreeLookLocomotion.Process(deltaTime);
-            else if (typeof(T) == typeof(PlayerTargetingState)) _playerTargetingLocomotion.Process(deltaTime);
-        }
+        public void Process(LocomotionTypes locomotionType, float deltaTime)
+            => _locomotionMap[locomotionType].Process(deltaTime);
     }
 }

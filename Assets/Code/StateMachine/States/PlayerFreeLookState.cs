@@ -1,4 +1,5 @@
-﻿using Unity3rdPersonDemo.Combat;
+﻿using Unity3rdPersonDemo.Characters;
+using Unity3rdPersonDemo.Combat;
 using UnityEngine;
 
 namespace Unity3rdPersonDemo.StateMachine.States
@@ -22,7 +23,7 @@ namespace Unity3rdPersonDemo.StateMachine.States
 
         public void Tick(float deltaTime)
         {
-            StateMachine.Locomotion.Process<PlayerFreeLookState>(deltaTime);
+            StateMachine.Locomotion.Process(LocomotionTypes.FreeLook, deltaTime);
         }
 
         public void Exit()
@@ -33,15 +34,13 @@ namespace Unity3rdPersonDemo.StateMachine.States
 
         private void InputReaderOnTargetingClicked()
         {
-            //todo: look for better way to do this other than creating new state objects over and over.  Should be able to cache these somewhere
             if (!StateMachine.ObjectTargeter.TrySelectTarget()) return;
             StateMachine.SwitchState(new PlayerTargetingState(StateMachine));
         }
 
         private void InputReaderOnAttackClicked(AttackCategories attack)
         {
-            //todo: the type of attack should be sent into the attack state to let it know what its starting with
-            StateMachine.SwitchState(new PlayerAttackingState(StateMachine, attack));
+            StateMachine.SwitchState(new PlayerAttackingState(StateMachine, GameStates.FreeLook, attack));
         }
     }
 }

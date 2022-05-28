@@ -1,4 +1,5 @@
-﻿using Unity3rdPersonDemo.Combat;
+﻿using Unity3rdPersonDemo.Characters;
+using Unity3rdPersonDemo.Combat;
 using UnityEngine;
 
 namespace Unity3rdPersonDemo.StateMachine.States
@@ -28,8 +29,7 @@ namespace Unity3rdPersonDemo.StateMachine.States
                 StateMachine.SwitchState(new PlayerFreeLookState(StateMachine));
                 return;
             }
-            StateMachine.Locomotion.Process<PlayerTargetingState>(deltaTime);
-            StateMachine.Locomotion.FaceTarget(StateMachine.ObjectTargeter.CurrentTarget);
+            StateMachine.Locomotion.Process(LocomotionTypes.Targeting, deltaTime);
         }
 
         public void Exit()
@@ -43,14 +43,12 @@ namespace Unity3rdPersonDemo.StateMachine.States
         //if targeting is already active and the user clicks on targeting again - that clears it
         private void InputReaderOnTargetingClicked()
         {
-            //todo: as in playerfreelookstate - find a way to cache these instead of creating new ones all the time
             StateMachine.SwitchState(new PlayerFreeLookState(StateMachine));
         }
 
         private void InputReaderOnAttackClicked(AttackCategories attack)
         {
-            //todo: the type of attack should be sent into the attack state to let it know what its starting with
-            StateMachine.SwitchState(new PlayerAttackingState(StateMachine, attack));
+            StateMachine.SwitchState(new PlayerAttackingState(StateMachine, GameStates.Targeting, attack));
         }
     }
 }

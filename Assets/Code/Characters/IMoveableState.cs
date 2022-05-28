@@ -17,6 +17,7 @@ namespace Unity3rdPersonDemo.Characters
         float FreeLookRotationDamping { get; }
         InputReader InputReader { get; }
         Transform MainCameraTransform { get; }
+        Targeter ObjectTargeter { get; }
         float TargetingMovementSpeed { get; }
     }
 }

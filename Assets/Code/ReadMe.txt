@@ -185,3 +185,33 @@ BACK TO BLEND TREE FOR TARGETING
 >> New MOtion >> RightStrafe >> x = 1 Y = 0
 
 Your blend tree will now show up like a diamond with a point up, down, left and right.  This is a 2D Blend tree.  You can even have items in between those points.
+
+
+MIXAMO RIGGING FIX (not sure I needed this)
+Downloading the animation we get under the player:
+Hips 
+>>LeftUpLeg
+>>RightUpLeg
+>>Spine
+
+Apparently this is bad and something got changed.
+
+Mixamo - search "Standing Melee Attack"
+Standing Melee Attack Downward
+Standing Melee Attack 360 Low
+Standing Melee Attack Backhand
+
+Download Options - keep defaults but make sure there is no skin (Without Skin)
+
+Pull out the Animations into their base objects.  
+Go into the Animator on the character.
+Drag the three animations onto the Animator.  They dont need hooked up to anything just arrange them somewhere it makes sense.
+
+COMBO ATTACKS
+Need to normalize the time between each animation (meaning a 5 second and a 3 second animation - I need to know what % I am through one).
+Problem is that the animator can have us in a blend state of multiple animations so we need to only care about certain ones.  In the animator
+for each animation you have a Tag property.
+
+>>Tag = Attack
+
+This lets me know that these are Attack animations.

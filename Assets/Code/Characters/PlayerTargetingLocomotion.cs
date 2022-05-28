@@ -2,34 +2,32 @@
 
 namespace Unity3rdPersonDemo.Characters
 {
-    public class PlayerTargetingLocomotion : ILocomotion
+    public class PlayerTargetingLocomotion : Locomotion
     {
         private readonly int TargetingForwardSpeedHash = Animator.StringToHash("TargetingForwardSpeed"); //pass a hash instead of a string as the int is faster
         private readonly int TargetingRightSpeedHash = Animator.StringToHash("TargetingRightSpeed"); //pass a hash instead of a string as the int is faster
-        private readonly IMoveableState _character;
 
-        public PlayerTargetingLocomotion(IMoveableState character)
-        {
-            _character = character;
-        }
+        public PlayerTargetingLocomotion(IMoveableState character) : base(character)
+        { }
 
-        public void Process(float deltaTime)
+        public override void Process(float deltaTime)
         {
             // move relative to the target.  When we go right or left we orbit the target.
             // the player should always be facing the target.
-            var forward = _character.InputReader.MovementValue.y;
-            var right = _character.InputReader.MovementValue.x;
+            var forward = Character.InputReader.MovementValue.y;
+            var right = Character.InputReader.MovementValue.x;
 
             var movementVector = CalculateRelativeMovementVector(forward, right);
             SetAnimationStateBasedOnInput(right, forward, deltaTime);
-            HandleMovement(movementVector, deltaTime);
+            HandleMovement(Character.TargetingMovementSpeed * movementVector, deltaTime);
+            FaceTarget(Character.ObjectTargeter.CurrentTarget);
         }
 
         private Vector3 CalculateRelativeMovementVector(float forward, float right)
         {
             var movement = new Vector3();
-            movement += _character.EntityTransform.right * right;
-            movement += _character.EntityTransform.forward * forward;
+            movement += Character.EntityTransform.right * right;
+            movement += Character.EntityTransform.forward * forward;
             return movement;
         }
 
@@ -43,8 +41,8 @@ namespace Unity3rdPersonDemo.Characters
         private bool TrySetIdleAnimations(float inputX, float inputY, float deltaTime)
         {
             if (inputY != 0 || inputX != 0) return false;
-            _character.Animator.SetFloat(TargetingForwardSpeedHash, Locomotion.IDLE, Locomotion.DAMP_SMOOTH_TIME, deltaTime);
-            _character.Animator.SetFloat(TargetingRightSpeedHash, Locomotion.IDLE, Locomotion.DAMP_SMOOTH_TIME, deltaTime);
+            Character.Animator.SetFloat(TargetingForwardSpeedHash, Locomotion.IDLE, Locomotion.DAMP_SMOOTH_TIME, deltaTime);
+            Character.Animator.SetFloat(TargetingRightSpeedHash, Locomotion.IDLE, Locomotion.DAMP_SMOOTH_TIME, deltaTime);
             return true;
         }
 
@@ -53,11 +51,11 @@ namespace Unity3rdPersonDemo.Characters
             if (inputY != 0)
             {
                 var forward = inputY > 0 ? Locomotion.RUN_FORWARD : Locomotion.RUN_BACKWARD;
-                _character.Animator.SetFloat(TargetingForwardSpeedHash, forward, Locomotion.DAMP_SMOOTH_TIME, deltaTime);
+                Character.Animator.SetFloat(TargetingForwardSpeedHash, forward, Locomotion.DAMP_SMOOTH_TIME, deltaTime);
             }
             else
             {
-                _character.Animator.SetFloat(TargetingForwardSpeedHash, Locomotion.IDLE, Locomotion.DAMP_SMOOTH_TIME, deltaTime);
+                Character.Animator.SetFloat(TargetingForwardSpeedHash, Locomotion.IDLE, Locomotion.DAMP_SMOOTH_TIME, deltaTime);
             }
         }
 
@@ -66,15 +64,12 @@ namespace Unity3rdPersonDemo.Characters
             if (inputX != 0)
             {
                 var right = inputX > 0 ? Locomotion.STRAFE_RIGHT : Locomotion.STRAFE_LEFT;
-                _character.Animator.SetFloat(TargetingRightSpeedHash, right, Locomotion.DAMP_SMOOTH_TIME, deltaTime);
+                Character.Animator.SetFloat(TargetingRightSpeedHash, right, Locomotion.DAMP_SMOOTH_TIME, deltaTime);
             }
             else
             {
-                _character.Animator.SetFloat(TargetingRightSpeedHash, Locomotion.IDLE, Locomotion.DAMP_SMOOTH_TIME, deltaTime);
+                Character.Animator.SetFloat(TargetingRightSpeedHash, Locomotion.IDLE, Locomotion.DAMP_SMOOTH_TIME, deltaTime);
             }
         }
-
-        private void HandleMovement(Vector3 moveVector, float deltaTime)
-            => _character.CharacterController.Move(motion: _character.TargetingMovementSpeed  * deltaTime * moveVector);
     }
 }
