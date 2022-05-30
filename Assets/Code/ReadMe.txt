@@ -215,3 +215,16 @@ for each animation you have a Tag property.
 >>Tag = Attack
 
 This lets me know that these are Attack animations.
+
+Additionally the animations can be sped up (or down). This could be good for big weapons that need to slow down.
+
+ADJUSTING DEFAULT STARTING CAMERA
+>> Click on the Free Look Camera
+>> Adjust the X Axis to swing the camera to wherever you want it to start
+You can look at it in the Game view to see where the camera starts itself.
+
+!! FREE LOOK CAMERA JANKY AND SNAPPING AROUND !!
+When I add a weapon to the hand of the model, whenever that weapon crosses the Look At target (the "hips") it would snap really close.  This was horrifyingly ugly.
+The fix is to either change the Minimum Distance From property of the Collider on the Cinemachine to something bigger than default of 0.1 (I set it to 1 and it seemed to mostly resolve)
+OR it was suggested by Gregoryl at Unity to add the weapon to its own layer and then in Collide Against (Defaults to "Default") set that to the layer of the weapon to ignore.  "Exclude that layer
+from the "Collide Against" mask.""

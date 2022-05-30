@@ -40,7 +40,7 @@ namespace Unity3rdPersonDemo.StateMachine.States
 
         private void InputReaderOnAttackClicked(AttackCategories attack)
         {
-            StateMachine.SwitchState(new PlayerAttackingState(StateMachine, GameStates.FreeLook, attack));
+            StateMachine.SwitchState(new PlayerAttackingState(StateMachine, attack));
         }
     }
 }

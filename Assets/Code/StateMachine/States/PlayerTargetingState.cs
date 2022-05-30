@@ -55,7 +55,7 @@ namespace Unity3rdPersonDemo.StateMachine.States
         private void InputReaderOnAttackClicked(AttackCategories attack)
         {
             _doNotClearTargetOnExit = true;
-            StateMachine.SwitchState(new PlayerAttackingState(StateMachine, GameStates.Targeting, attack));
+            StateMachine.SwitchState(new PlayerAttackingState(StateMachine, attack));
         }
     }
 }

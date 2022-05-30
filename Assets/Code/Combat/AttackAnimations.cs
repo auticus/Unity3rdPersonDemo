@@ -4,29 +4,37 @@ using System.Linq;
 namespace Unity3rdPersonDemo.Combat
 {
     /// <summary>
-    /// Data class that holds information pertaining to attack animations and which category they belong to.
+    /// Static data-class that holds information pertaining to attack animations and which category they belong to.
     /// </summary>
     public static class AttackAnimations
     {
         /// <summary>
-        /// Gets a tuple representing attack categories matched with their attack animations and what their index number is in their respective combo chains.
+        /// An Array of <see cref="AttackAnimation"/>
         /// </summary>
         public static AttackAnimation[] AttackData { get; private set; }
 
         static AttackAnimations()
         {
-            AttackData = new AttackAnimation[]
-            {
-                AttackAnimation.BuildAnimation(AttackCategories.Basic, "Attack1", 0, crossFadeBlend: 0.1f, comboAttackWindow: 0.6f),
-                AttackAnimation.BuildAnimation(AttackCategories.Basic, "Attack2", 1, crossFadeBlend: 0.1f, comboAttackWindow: 0.5f),
-                AttackAnimation.BuildAnimation(AttackCategories.Basic, "Attack3", 2, crossFadeBlend: 0.1f, comboAttackWindow : 0f)
-            };
+            AttackData = BuildBasicAttackComboChain();
         }
 
         public static IList<AttackAnimation> GetAttacksByCategory(AttackCategories category) 
             => AttackData.Where(attack => attack.Category == category).ToList();
+
+        private static AttackAnimation[] BuildBasicAttackComboChain()
+        {
+            return new AttackAnimation[]
+            {
+                AttackAnimation.BuildAnimation(AttackCategories.Basic, "Attack1", 0, crossFadeBlend: 0.1f, comboAttackWindow: 0.6f, forceAppliedTime:0.35f, force: 15f),
+                AttackAnimation.BuildAnimation(AttackCategories.Basic, "Attack2", 1, crossFadeBlend: 0.1f, comboAttackWindow: 0.5f, forceAppliedTime:0.35f, force: 15f),
+                AttackAnimation.BuildAnimation(AttackCategories.Basic, "Attack3", 2, crossFadeBlend: 0.1f, comboAttackWindow : 0f, forceAppliedTime:0.35f, force: 20f)
+            };
+        }
     }
 
+    /// <summary>
+    /// Represents the animation of the attack and includes all data for that attack.
+    /// </summary>
     public class AttackAnimation
     {
         public AttackCategories Category { get; }
@@ -47,29 +55,33 @@ namespace Unity3rdPersonDemo.Combat
         /// </summary>
         public float ComboAttackWindow { get; }
 
-        private AttackAnimation(AttackCategories category, string animationName, int comboIndex, float crossFadeBlend, float comboAttackWindow)
+        /// <summary>
+        /// The percentage of an animation where the force will be applied.
+        /// </summary>
+        public float ForceAppliedTime { get; }
+
+        /// <summary>
+        /// The base force value applied by the character when the <see cref="ForceAppliedTime"/> portion of the animation is reached.
+        /// </summary>
+        public float Force { get; }
+
+        private AttackAnimation(
+            AttackCategories category, 
+            string animationName,
+            int comboIndex, 
+            float crossFadeBlend, 
+            float comboAttackWindow,
+            float forceAppliedTime,
+            float force)
         {
             Category = category;
             AnimationName = animationName;
             ComboIndex = comboIndex;
             TransitionDuration = crossFadeBlend;
             ComboAttackWindow = comboAttackWindow;
+            ForceAppliedTime = forceAppliedTime;
+            Force = force;
         }
-
-        /// <summary>
-        /// Builds an animation that has no window (it is able to be transitioned to freely).
-        /// </summary>
-        /// <param name="category"></param>
-        /// <param name="animationName"></param>
-        /// <param name="comboIndex"></param>
-        /// <param name="crossFadeBlend"></param>
-        /// <returns></returns>
-        public static AttackAnimation BuildAnimation(
-            AttackCategories category,
-            string animationName,
-            int comboIndex,
-            float crossFadeBlend)
-            => new AttackAnimation(category, animationName, comboIndex, crossFadeBlend, 0f);
 
         /// <summary>
         /// Builds an attack animation.
@@ -85,7 +97,9 @@ namespace Unity3rdPersonDemo.Combat
             string animationName,
             int comboIndex,
             float crossFadeBlend,
-            float comboAttackWindow)
-            => new AttackAnimation(category, animationName, comboIndex, crossFadeBlend, comboAttackWindow);
+            float comboAttackWindow,
+            float forceAppliedTime,
+            float force)
+            => new AttackAnimation(category, animationName, comboIndex, crossFadeBlend, comboAttackWindow, forceAppliedTime, force);
     }
 }
