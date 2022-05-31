@@ -1044,6 +1044,8 @@ GameObject:
   - component: {fileID: 6950863633096382907}
   - component: {fileID: 6710560927653381055}
   - component: {fileID: 1192652686744315790}
+  - component: {fileID: 9164456988633834715}
+  - component: {fileID: 2051496302534580649}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -1154,6 +1156,34 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   controller: {fileID: 7046390397903702752}
   drag: 0.1
+--- !u!114 &9164456988633834715
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4330797591441433127}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ffea269cd57ee8488bf8a3cc2ee016d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 100
+--- !u!114 &2051496302534580649
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4330797591441433127}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0eec317b4faf39648b5cba209f961efb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weaponCollider: {fileID: 0}
+  owningCharacter: {fileID: 0}
+  baseDamage: 0
 --- !u!1 &4351188083359354921
 GameObject:
   m_ObjectHideFlags: 0
