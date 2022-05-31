@@ -228,3 +228,29 @@ When I add a weapon to the hand of the model, whenever that weapon crosses the L
 The fix is to either change the Minimum Distance From property of the Collider on the Cinemachine to something bigger than default of 0.1 (I set it to 1 and it seemed to mostly resolve)
 OR it was suggested by Gregoryl at Unity to add the weapon to its own layer and then in Collide Against (Defaults to "Default") set that to the layer of the weapon to ignore.  "Exclude that layer
 from the "Collide Against" mask.""
+
+
+**WEAPON HITBOXES**
+Animations will turn the hit box on when its swinging and off when its done
+
+Creates a capsule collider which is a child of the Right Hand and surrounds the sword with it.
+capsule is a bit fat - radius is 0.2.  Also IsTrigger is set.
+Last - uncheck the collider to make sure its turned off.
+
+The animator can call functions in scripts to turn this on.
+
+>> Create new Script - Weapon
+>> add Serialize field GameObject weapon
+>> public void EnableWeapon()  weapon.SetActive(true);
+>> public void DisableWeapon weapon.SetActive(false);
+
+Can only call methods at the same level as the animator which is at the root of the player in this example.
+Add Weapon script to the Player.  
+>> Drag collider to the weapon script for the GameObject.
+
+>>Animation tab >> find the point where you want to turn it on in the Animation keyframes.
+If animation tab is not open its Window >> Animation >> Animation
+From here in the SCENE view as you scroll through the animation keyframes you'll see it move in scene view - so choose your animations and this is where we set where things get enabled or not.
+>> Put the needle to the frame where you want to turn it on.
+>> Click the AddEvent button (its on the left... its a rectangle with a + sign - can be hard to see its under the frame key box.
+>> In the function dropdown on the right - it will say Function:  and this is where you enable and disable.

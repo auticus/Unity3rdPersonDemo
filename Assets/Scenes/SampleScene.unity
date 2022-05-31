@@ -123,6 +123,25 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &9760208 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7144520284280626663, guid: f4aa2aa78c1e89d459ecd19aefc17507,
+    type: 3}
+  m_PrefabInstance: {fileID: 7622491481491568952}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &9760215
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9760208}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0eec317b4faf39648b5cba209f961efb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weapon: {fileID: 303243852}
 --- !u!1001 &26396905
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -325,6 +344,12 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4158129426897026, guid: 8acefe7b0efb60942a9673f647903856,
     type: 3}
   m_PrefabInstance: {fileID: 1450129182}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &303243852 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6781178315241508296, guid: f4aa2aa78c1e89d459ecd19aefc17507,
+    type: 3}
+  m_PrefabInstance: {fileID: 7622491481491568952}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &330585543
 GameObject:
@@ -1499,6 +1524,46 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 126889316940289008, guid: f4aa2aa78c1e89d459ecd19aefc17507,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.062
+      objectReference: {fileID: 0}
+    - target: {fileID: 126889316940289008, guid: f4aa2aa78c1e89d459ecd19aefc17507,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.015
+      objectReference: {fileID: 0}
+    - target: {fileID: 126889316940289008, guid: f4aa2aa78c1e89d459ecd19aefc17507,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.013
+      objectReference: {fileID: 0}
+    - target: {fileID: 126889316940289008, guid: f4aa2aa78c1e89d459ecd19aefc17507,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.6520796
+      objectReference: {fileID: 0}
+    - target: {fileID: 126889316940289008, guid: f4aa2aa78c1e89d459ecd19aefc17507,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.7581505
+      objectReference: {fileID: 0}
+    - target: {fileID: 126889316940289008, guid: f4aa2aa78c1e89d459ecd19aefc17507,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.00000001729472
+      objectReference: {fileID: 0}
+    - target: {fileID: 126889316940289008, guid: f4aa2aa78c1e89d459ecd19aefc17507,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.00000004493538
+      objectReference: {fileID: 0}
+    - target: {fileID: 126889316940289008, guid: f4aa2aa78c1e89d459ecd19aefc17507,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 98.603
+      objectReference: {fileID: 0}
     - target: {fileID: 152218257196072063, guid: f4aa2aa78c1e89d459ecd19aefc17507,
         type: 3}
       propertyPath: <ObjectTargeter>k__BackingField
@@ -1607,6 +1672,11 @@ PrefabInstance:
     - target: {fileID: 5693165028075677813, guid: f4aa2aa78c1e89d459ecd19aefc17507,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6781178315241508296, guid: f4aa2aa78c1e89d459ecd19aefc17507,
+        type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7622491480374446678, guid: f4aa2aa78c1e89d459ecd19aefc17507,
@@ -1758,6 +1828,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalRotation.z
       value: -0.00000037439167
+      objectReference: {fileID: 0}
+    - target: {fileID: 8272891880202395323, guid: f4aa2aa78c1e89d459ecd19aefc17507,
+        type: 3}
+      propertyPath: m_Name
+      value: WeaponSocket
       objectReference: {fileID: 0}
     - target: {fileID: 8272891880202395323, guid: f4aa2aa78c1e89d459ecd19aefc17507,
         type: 3}
