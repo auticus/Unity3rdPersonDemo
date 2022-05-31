@@ -25,9 +25,30 @@ namespace Unity3rdPersonDemo.Combat
         {
             return new AttackAnimation[]
             {
-                AttackAnimation.BuildAnimation(AttackCategories.Basic, "Attack1", 0, crossFadeBlend: 0.1f, comboAttackWindow: 0.6f, forceAppliedTime:0.35f, force: 15f),
-                AttackAnimation.BuildAnimation(AttackCategories.Basic, "Attack2", 1, crossFadeBlend: 0.1f, comboAttackWindow: 0.5f, forceAppliedTime:0.35f, force: 15f),
-                AttackAnimation.BuildAnimation(AttackCategories.Basic, "Attack3", 2, crossFadeBlend: 0.1f, comboAttackWindow : 0f, forceAppliedTime:0.35f, force: 20f)
+                AttackAnimation.BuildAnimation(AttackCategories.Basic,
+                    "Attack1",
+                    0,
+                    crossFadeBlend: 0.1f,
+                    comboAttackWindow: 0.6f,
+                    forceAppliedTime:0.35f,
+                    force: 15f,
+                    attackDamageMultiplier: 1.0f),
+                AttackAnimation.BuildAnimation(AttackCategories.Basic,
+                    "Attack2",
+                    1,
+                    crossFadeBlend: 0.1f,
+                    comboAttackWindow: 0.5f,
+                    forceAppliedTime:0.35f,
+                    force: 15f,
+                    attackDamageMultiplier: 1.2f),
+                AttackAnimation.BuildAnimation(AttackCategories.Basic,
+                    "Attack3",
+                    2,
+                    crossFadeBlend: 0.1f,
+                    comboAttackWindow : 0f,
+                    forceAppliedTime:0.35f,
+                    force: 20f,
+                    attackDamageMultiplier: 1.5f)
             };
         }
     }
@@ -65,6 +86,11 @@ namespace Unity3rdPersonDemo.Combat
         /// </summary>
         public float Force { get; }
 
+        /// <summary>
+        /// Gets the damage multiplier that the attack animation can have applied to it if it strikes.
+        /// </summary>
+        public float AttackDamageMultiplier { get; }
+
         private AttackAnimation(
             AttackCategories category, 
             string animationName,
@@ -72,7 +98,8 @@ namespace Unity3rdPersonDemo.Combat
             float crossFadeBlend, 
             float comboAttackWindow,
             float forceAppliedTime,
-            float force)
+            float force,
+            float attackDamageMultiplier)
         {
             Category = category;
             AnimationName = animationName;
@@ -81,6 +108,7 @@ namespace Unity3rdPersonDemo.Combat
             ComboAttackWindow = comboAttackWindow;
             ForceAppliedTime = forceAppliedTime;
             Force = force;
+            AttackDamageMultiplier = attackDamageMultiplier;
         }
 
         /// <summary>
@@ -91,6 +119,7 @@ namespace Unity3rdPersonDemo.Combat
         /// <param name="comboIndex">The position on the attack chain.</param>
         /// <param name="crossFadeBlend">The amount of blending from one animation to the other.</param>
         /// <param name="comboAttackWindow">What percentage into the attack the next attack can be triggered.</param>
+        /// <param name="attackDamageMultiplier">The multiplier that is applied to the weapon's base damage if struck.</param>
         /// <returns></returns>
         public static AttackAnimation BuildAnimation(
             AttackCategories category,
@@ -99,7 +128,8 @@ namespace Unity3rdPersonDemo.Combat
             float crossFadeBlend,
             float comboAttackWindow,
             float forceAppliedTime,
-            float force)
-            => new AttackAnimation(category, animationName, comboIndex, crossFadeBlend, comboAttackWindow, forceAppliedTime, force);
+            float force,
+            float attackDamageMultiplier)
+            => new AttackAnimation(category, animationName, comboIndex, crossFadeBlend, comboAttackWindow, forceAppliedTime, force, attackDamageMultiplier);
     }
 }

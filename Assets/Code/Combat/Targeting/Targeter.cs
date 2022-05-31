@@ -27,7 +27,6 @@ namespace Unity3rdPersonDemo.Combat.Targeting
         {
             if (other.TryGetComponent(out Target target))
             {
-                Debug.Log("Target was found!");
                 target.OnDestroyed += RemoveTarget;
                 _targets.Add(target);
             }
