@@ -87,9 +87,9 @@ namespace Unity3rdPersonDemo.Combat
         public float Force { get; }
 
         /// <summary>
-        /// Gets the damage multiplier that the attack animation can have applied to it if it strikes.
+        /// Gets the attribute multiplier that the attack animation can have applied to it if it strikes that can be used on damage or force.
         /// </summary>
-        public float AttackDamageMultiplier { get; }
+        public float AttackAttributeMultiplier { get; }
 
         private AttackAnimation(
             AttackCategories category, 
@@ -99,7 +99,7 @@ namespace Unity3rdPersonDemo.Combat
             float comboAttackWindow,
             float forceAppliedTime,
             float force,
-            float attackDamageMultiplier)
+            float attackAttributeMultiplier)
         {
             Category = category;
             AnimationName = animationName;
@@ -108,7 +108,7 @@ namespace Unity3rdPersonDemo.Combat
             ComboAttackWindow = comboAttackWindow;
             ForceAppliedTime = forceAppliedTime;
             Force = force;
-            AttackDamageMultiplier = attackDamageMultiplier;
+            AttackAttributeMultiplier = attackAttributeMultiplier;
         }
 
         /// <summary>

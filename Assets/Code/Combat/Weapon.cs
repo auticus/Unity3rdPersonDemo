@@ -9,7 +9,7 @@ namespace Unity3rdPersonDemo.Combat
     public class Weapon : MonoBehaviour
     {
         [SerializeField] private Collider owningCharacter;
-        [SerializeField] private GameObject weaponCollider;
+        [SerializeField] [Tooltip("The collider of the currently equipped weapon")] private GameObject weaponCollider;
         [SerializeField] [Tooltip("The base damage of the weapon")] private int baseDamage;
         
         private readonly List<Collider> _itemsAlreadyHit = new();
