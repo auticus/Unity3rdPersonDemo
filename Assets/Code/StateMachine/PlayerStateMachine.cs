@@ -1,4 +1,5 @@
 ﻿using Unity3rdPersonDemo.Characters;
+using Unity3rdPersonDemo.Combat;
 using Unity3rdPersonDemo.Combat.Targeting;
 using Unity3rdPersonDemo.Input;
 using Unity3rdPersonDemo.StateMachine.States;
@@ -23,6 +24,7 @@ namespace Unity3rdPersonDemo.StateMachine
         [field: SerializeField] public float FreeLookRotationDamping { get; private set; }
         [field: SerializeField] public Targeter ObjectTargeter { get; private set; }
         [field: SerializeField] public ForceReceiver Force { get; private set; }
+        [field: SerializeField] public Weapon Weapon { get; private set; }
         public Transform MainCameraTransform { get; private set; }
         public PlayerControlledLocomotion Locomotion { get; private set; }
 

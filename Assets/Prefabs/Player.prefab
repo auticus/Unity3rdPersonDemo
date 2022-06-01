@@ -1142,6 +1142,7 @@ MonoBehaviour:
   <FreeLookRotationDamping>k__BackingField: 8
   <ObjectTargeter>k__BackingField: {fileID: 0}
   <Force>k__BackingField: {fileID: 1192652686744315790}
+  <Weapon>k__BackingField: {fileID: 5188692072690762007}
 --- !u!114 &1192652686744315790
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1182,6 +1183,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   owningCharacter: {fileID: 7046390397903702752}
+  weaponCollider: {fileID: 0}
   baseDamage: 10
 --- !u!1 &4351188083359354921
 GameObject:

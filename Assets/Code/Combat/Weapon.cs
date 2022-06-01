@@ -13,6 +13,7 @@ namespace Unity3rdPersonDemo.Combat
         [SerializeField] [Tooltip("The base damage of the weapon")] private int baseDamage;
         
         private readonly List<Collider> _itemsAlreadyHit = new();
+        private float _characterAnimationDamageMultiplier;  //animation states may cause more or less damage
         
         public void EnableWeapon()
         {
@@ -27,12 +28,21 @@ namespace Unity3rdPersonDemo.Combat
             weaponCollider.SetActive(false);
         }
 
+        /// <summary>
+        /// Sets the multiplier for any damage done based on the animation.
+        /// </summary>
+        /// <param name="damageMultiplier"></param>
+        public void SetAnimationDamageMultiplier(float damageMultiplier)
+        {
+            if (damageMultiplier == 0) damageMultiplier = 1;
+            _characterAnimationDamageMultiplier = damageMultiplier;
+        }
+
         private void OnTriggerEnter(Collider other)
         {
             if (other == owningCharacter) return;
             if (_itemsAlreadyHit.Contains(other)) return;
 
-            Debug.Log($"Entered target {other.gameObject.name}");
             //This should trigger when the collider on the weapon collides with a rigid body
             other.gameObject.TryGetComponent(out Health health);
 
@@ -40,7 +50,7 @@ namespace Unity3rdPersonDemo.Combat
             {
                 return; //not something you can damage
             }
-            health.DamageHealth(baseDamage);
+            health.DamageHealth((int)Mathf.Ceil(baseDamage * _characterAnimationDamageMultiplier));
             _itemsAlreadyHit.Add(other);
         }
     }
