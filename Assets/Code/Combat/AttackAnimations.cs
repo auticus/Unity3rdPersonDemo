@@ -31,7 +31,7 @@ namespace Unity3rdPersonDemo.Combat
                     crossFadeBlend: 0.1f,
                     comboAttackWindow: 0.6f,
                     forceAppliedTime:0.35f,
-                    force: 15f,
+                    force: 8f,
                     attackDamageMultiplier: 1.0f),
                 AttackAnimation.BuildAnimation(AttackCategories.Basic,
                     "Attack2",
@@ -39,7 +39,7 @@ namespace Unity3rdPersonDemo.Combat
                     crossFadeBlend: 0.1f,
                     comboAttackWindow: 0.5f,
                     forceAppliedTime:0.35f,
-                    force: 15f,
+                    force: 10f,
                     attackDamageMultiplier: 1.2f),
                 AttackAnimation.BuildAnimation(AttackCategories.Basic,
                     "Attack3",
@@ -47,7 +47,7 @@ namespace Unity3rdPersonDemo.Combat
                     crossFadeBlend: 0.1f,
                     comboAttackWindow : 0f,
                     forceAppliedTime:0.35f,
-                    force: 20f,
+                    force: 12f,
                     attackDamageMultiplier: 1.5f)
             };
         }

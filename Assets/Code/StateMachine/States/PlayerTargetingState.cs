@@ -12,6 +12,7 @@ namespace Unity3rdPersonDemo.StateMachine.States
     {
         private readonly int TargetingCameraBlendTreeHash = Animator.StringToHash("TargetingBlendTree");
         private bool _doNotClearTargetOnExit = false;
+        private const float ANIMATION_BLEND_TIME = 0.2f;
 
         public PlayerTargetingState(PlayerStateMachine stateMachine) : base(stateMachine)
         { }
@@ -20,8 +21,7 @@ namespace Unity3rdPersonDemo.StateMachine.States
         {
             StateMachine.InputReader.OnTargetingClicked += InputReaderOnTargetingClicked;
             StateMachine.InputReader.OnAttackClicked += InputReaderOnAttackClicked;
-            StateMachine.Animator.Play(TargetingCameraBlendTreeHash);
-            Debug.Log($"Targeting: {StateMachine.ObjectTargeter.CurrentTarget.name}");
+            StateMachine.Animator.CrossFadeInFixedTime(TargetingCameraBlendTreeHash, ANIMATION_BLEND_TIME);
         }
         
         public void Tick(float deltaTime)

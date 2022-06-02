@@ -10,6 +10,7 @@ namespace Unity3rdPersonDemo.StateMachine.States
     internal class PlayerFreeLookState : PlayerBaseState, IGameState
     {
         private readonly int FreeLookCameraBlendTreeHash = Animator.StringToHash("FreeLookBlendTree");
+        private const float ANIMATION_BLEND_TIME = 0.2f;
 
         public PlayerFreeLookState(PlayerStateMachine stateMachine) : base(stateMachine)
         { }
@@ -18,7 +19,7 @@ namespace Unity3rdPersonDemo.StateMachine.States
         {
             StateMachine.InputReader.OnTargetingClicked += InputReaderOnTargetingClicked;
             StateMachine.InputReader.OnAttackClicked += InputReaderOnAttackClicked;
-            StateMachine.Animator.Play(FreeLookCameraBlendTreeHash);
+            StateMachine.Animator.CrossFadeInFixedTime(FreeLookCameraBlendTreeHash, ANIMATION_BLEND_TIME);
         }
 
         public void Tick(float deltaTime)
