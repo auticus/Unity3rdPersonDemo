@@ -188,6 +188,8 @@ Your blend tree will now show up like a diamond with a point up, down, left and 
 
 
 MIXAMO RIGGING FIX (not sure I needed this)
+!! WHY he brought this up - if you want to re-use the same animations for multiple models, they have to have the same bone structure
+Some of mixamo's models have different bone structure so you have to pull those model-specific animations !!
 Downloading the animation we get under the player:
 Hips 
 >>LeftUpLeg

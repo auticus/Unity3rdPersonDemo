@@ -177,8 +177,9 @@ GameObject:
   - component: {fileID: 1813204717616739427}
   - component: {fileID: 8619462665796341267}
   - component: {fileID: 5282483081103819967}
+  - component: {fileID: 907195466797554851}
   m_Layer: 0
-  m_Name: Enemy
+  m_Name: Enemy_Cultist
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -243,7 +244,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ffea269cd57ee8488bf8a3cc2ee016d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 100
+  maxHealth: 50
 --- !u!114 &8619462665796341267
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -256,6 +257,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 41acc0744a0faad4b9ce3d32bb500dbc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <Animator>k__BackingField: {fileID: 5282483081103819967}
 --- !u!95 &5282483081103819967
 Animator:
   serializedVersion: 4
@@ -276,6 +278,20 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!136 &907195466797554851
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 907053538130171138}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.4
+  m_Height: 2
+  m_Direction: 1
+  m_Center: {x: 0, y: 1, z: 0}
 --- !u!1 &948499163020718507
 GameObject:
   m_ObjectHideFlags: 0
