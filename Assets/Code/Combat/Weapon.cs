@@ -42,7 +42,7 @@ namespace Unity3rdPersonDemo.Combat
         {
             if (other == owningCharacter) return;
             if (_itemsAlreadyHit.Contains(other)) return;
-
+            
             //This should trigger when the collider on the weapon collides with a rigid body
             other.gameObject.TryGetComponent(out Health health);
 
