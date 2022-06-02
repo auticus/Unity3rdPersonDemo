@@ -7,7 +7,7 @@ namespace Unity3rdPersonDemo.Characters
         private readonly int TargetingForwardSpeedHash = Animator.StringToHash("TargetingForwardSpeed"); //pass a hash instead of a string as the int is faster
         private readonly int TargetingRightSpeedHash = Animator.StringToHash("TargetingRightSpeed"); //pass a hash instead of a string as the int is faster
 
-        public PlayerTargetingLocomotion(IMoveableState character) : base(character)
+        public PlayerTargetingLocomotion(IMoveable character) : base(character)
         { }
 
         public override void Process(float deltaTime)

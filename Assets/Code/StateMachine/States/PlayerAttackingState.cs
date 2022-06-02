@@ -18,7 +18,7 @@ namespace Unity3rdPersonDemo.StateMachine.States
         /// <summary>
         /// Constructs the <see cref="PlayerAttackingState"/> object and uses the first attack in the combo chain.
         /// </summary>
-        /// <param name="stateMachine">The state machine holding the character data.</param>
+        /// <param name="stateMachine">The state stateMachine holding the character data.</param>
         /// <param name="attack">The attack category that this state belongs to.</param>
         public PlayerAttackingState(PlayerStateMachine stateMachine, AttackCategories attack)
             : this(stateMachine, attack, FIRST_ATTACK_INDEX)
@@ -27,7 +27,7 @@ namespace Unity3rdPersonDemo.StateMachine.States
         /// <summary>
         /// Constructs the <see cref="PlayerAttackingState"/> object.
         /// </summary>
-        /// <param name="stateMachine">The state machine holding the character data.</param>
+        /// <param name="stateMachine">The state stateMachine holding the character data.</param>
         /// <param name="attack">The attack category that this state belongs to.</param>
         /// <param name="attackIndex">The specific attack in the attack chain that this state belongs to.</param>
         public PlayerAttackingState(PlayerStateMachine stateMachine, AttackCategories attack, int attackIndex) 

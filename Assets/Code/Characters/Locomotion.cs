@@ -14,9 +14,9 @@ namespace Unity3rdPersonDemo.Characters
         public const int RUN_BACKWARD = -1;
         public const int STRAFE_RIGHT = 1;
         public const int STRAFE_LEFT = -1;
-        protected readonly IMoveableState Character;
+        protected readonly IMoveable Character;
 
-        protected Locomotion(IMoveableState character)
+        protected Locomotion(IMoveable character)
         {
             Character = character;
         }

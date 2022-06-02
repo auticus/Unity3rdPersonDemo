@@ -4,7 +4,7 @@ namespace Unity3rdPersonDemo.Characters
 {
     public class PlayerAttackingLocomotion : Locomotion
     {
-        public PlayerAttackingLocomotion(IMoveableState character) : base(character)
+        public PlayerAttackingLocomotion(IMoveable character) : base(character)
         { }
 
         public override void Process(float deltaTime)

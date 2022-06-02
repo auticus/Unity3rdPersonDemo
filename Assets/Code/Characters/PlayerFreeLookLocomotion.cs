@@ -6,7 +6,7 @@ namespace Unity3rdPersonDemo.Characters
     {
         private readonly int FreeLookSpeedHash = Animator.StringToHash("FreeLookSpeed"); //pass a hash instead of a string as the int is faster
         
-        public PlayerFreeLookLocomotion(IMoveableState character) : base(character)
+        public PlayerFreeLookLocomotion(IMoveable character) : base(character)
         { }
 
         public override void Process(float deltaTime)

@@ -10,9 +10,9 @@ namespace Unity3rdPersonDemo.StateMachine
     /// <summary>
     /// Primary controller of the Player.
     /// </summary>
-    public class PlayerStateMachine : StateMachine, IMoveableState
+    public class PlayerStateMachine : StateMachine, IMoveable
     {
-        //todo: the name of this class is a bit misleading as it is a type of State Machine but is also controlling movement etc.
+        //todo: the name of this class is a bit misleading as it is a type of State StateMachine but is also controlling movement etc.
         //its more a player controller.
 
         //turns this into a field under the hood so the editor can add.

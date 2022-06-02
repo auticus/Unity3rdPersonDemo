@@ -40,6 +40,7 @@ namespace Unity3rdPersonDemo.Combat
 
         private void OnTriggerEnter(Collider other)
         {
+            Debug.Log($"Player weapon has entered a collider: {other.gameObject.name}");
             if (other == owningCharacter) return;
             if (_itemsAlreadyHit.Contains(other)) return;
 

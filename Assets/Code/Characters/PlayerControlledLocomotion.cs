@@ -6,7 +6,7 @@ namespace Unity3rdPersonDemo.Characters
     {
         private readonly Dictionary<LocomotionTypes, ILocomotion> _locomotionMap;
 
-        public PlayerControlledLocomotion(IMoveableState character)
+        public PlayerControlledLocomotion(IMoveable character)
         {
             _locomotionMap = new Dictionary<LocomotionTypes, ILocomotion>
             {
