@@ -1,7 +1,13 @@
-﻿namespace Unity3rdPersonDemo.StateMachine.States.Enemy
+﻿using UnityEngine;
+
+namespace Unity3rdPersonDemo.StateMachine.States.Enemy
 {
     public abstract class EnemyBaseState
     {
+        protected readonly int LocomotionBlendTreeHash = Animator.StringToHash("LocomotionBlendTree");
+        protected readonly int SpeedHash = Animator.StringToHash("Speed");
+        protected const float ANIMATION_BLEND_TIME = 0.2f;
+
         protected EnemyStateMachine StateMachine { get; }
 
         protected EnemyBaseState(EnemyStateMachine stateMachine)

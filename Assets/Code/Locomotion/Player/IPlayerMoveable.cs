@@ -2,7 +2,7 @@
 using Unity3rdPersonDemo.Input;
 using UnityEngine;
 
-namespace Unity3rdPersonDemo.Characters.Player
+namespace Unity3rdPersonDemo.Locomotion.Player
 {
     public interface IPlayerMoveable : IMoveable
     {

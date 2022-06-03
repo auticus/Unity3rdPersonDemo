@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Unity3rdPersonDemo.Characters.NonPlayer
+namespace Unity3rdPersonDemo.Locomotion.NonPlayer
 {
     /// <summary>
     /// Locomotion class for NPCs.
@@ -9,11 +9,12 @@ namespace Unity3rdPersonDemo.Characters.NonPlayer
     {
         private readonly Dictionary<LocomotionTypes, ILocomotion> _locomotionMap;
 
-        public NPCControlledLocomotion(IMoveable character)
+        public NPCControlledLocomotion(INonPlayerMoveable character)
         {
             _locomotionMap = new Dictionary<LocomotionTypes, ILocomotion>
             {
-                { LocomotionTypes.FreeLook, new NPCDefaultLocomotion(character) }
+                { LocomotionTypes.FreeLook, new NPCDefaultLocomotion(character) },
+                { LocomotionTypes.Pursuit, new NPCPursuitLocomotion(character) }
             };
         }
 

@@ -1,7 +1,6 @@
-﻿using Unity3rdPersonDemo.Combat.Targeting;
-using UnityEngine;
+﻿using UnityEngine;
 
-namespace Unity3rdPersonDemo.Characters
+namespace Unity3rdPersonDemo.Locomotion
 {
     /// <summary>
     /// Class responsible for moving characters.
@@ -50,14 +49,27 @@ namespace Unity3rdPersonDemo.Characters
                 deltaTime * Character.RotationDamping);
 
         /// <summary>
+        /// Given a target, will give the Vector to that target with a Y vector of 0.
+        /// </summary>
+        /// <param name="target">The target to get a vector to.</param>
+        /// <returns></returns>
+        protected virtual Vector3 GetVectorXZToTarget(Transform target)
+        {
+            if (target == null) return Vector3.zero;
+            var facingVector = target.position - Character.EntityTransform.position;
+            facingVector.y = 0; //we don't care about the height difference
+
+            return facingVector;
+        }
+
+        /// <summary>
         /// Given a target, will turn to face that target.
         /// </summary>
         /// <param name="target">The target to face.</param>
-        protected virtual void FaceTarget(Target target)
+        protected virtual void FaceTarget(Transform target)
         {
-            if (target == null) return;
-            var facingVector = target.transform.position - Character.EntityTransform.position;
-            facingVector.y = 0; //we don't care about the height difference
+            var facingVector = GetVectorXZToTarget(target);
+            if (facingVector == Vector3.zero) return;
             Character.EntityTransform.rotation = Quaternion.LookRotation(facingVector);
         }
     }

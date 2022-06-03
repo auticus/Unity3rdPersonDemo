@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Unity3rdPersonDemo.Characters.Player
+namespace Unity3rdPersonDemo.Locomotion.Player
 {
     public class PlayerTargetingLocomotion : PlayerLocomotion
     {
@@ -20,7 +20,7 @@ namespace Unity3rdPersonDemo.Characters.Player
             var movementVector = CalculateRelativeMovementVector(forward, right);
             SetAnimationStateBasedOnInput(right, forward, deltaTime);
             HandleMovement(Character.TargetingMovementSpeed * movementVector, deltaTime);
-            FaceTarget(Character.ObjectTargeter.CurrentTarget);
+            FaceTarget(Character.ObjectTargeter.CurrentTarget.transform);
         }
 
         private Vector3 CalculateRelativeMovementVector(float forward, float right)

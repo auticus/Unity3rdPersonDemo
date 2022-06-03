@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Unity3rdPersonDemo.Characters.Player
+namespace Unity3rdPersonDemo.Locomotion.Player
 {
     public class PlayerFreeLookLocomotion : PlayerLocomotion
     {

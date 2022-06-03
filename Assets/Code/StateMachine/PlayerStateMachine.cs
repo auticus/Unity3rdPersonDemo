@@ -1,8 +1,8 @@
-﻿using Unity3rdPersonDemo.Characters;
-using Unity3rdPersonDemo.Characters.Player;
-using Unity3rdPersonDemo.Combat;
+﻿using Unity3rdPersonDemo.Combat;
 using Unity3rdPersonDemo.Combat.Targeting;
 using Unity3rdPersonDemo.Input;
+using Unity3rdPersonDemo.Locomotion;
+using Unity3rdPersonDemo.Locomotion.Player;
 using Unity3rdPersonDemo.StateMachine.States;
 using UnityEngine;
 

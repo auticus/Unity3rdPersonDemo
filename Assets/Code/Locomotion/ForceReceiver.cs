@@ -1,9 +1,9 @@
 ﻿using UnityEngine;
 
-namespace Unity3rdPersonDemo.Characters
+namespace Unity3rdPersonDemo.Locomotion
 {
     /// <summary>
-    /// Component that handles force and gravity.
+    /// Component that handles force and gravity on a character.
     /// </summary>
     public class ForceReceiver : MonoBehaviour
     {

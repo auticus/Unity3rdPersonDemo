@@ -1,6 +1,4 @@
-﻿using UnityEngine;
-
-namespace Unity3rdPersonDemo.Characters.Player
+﻿namespace Unity3rdPersonDemo.Locomotion.Player
 {
     public class PlayerAttackingLocomotion : PlayerLocomotion
     {
@@ -10,7 +8,9 @@ namespace Unity3rdPersonDemo.Characters.Player
         public override void Process(float deltaTime)
         {
             HandleMovement(deltaTime); //no real movement but HandleMovement also puts gravity and force in
-            FaceTarget(Character.ObjectTargeter.CurrentTarget);
+
+            if (Character.ObjectTargeter.CurrentTarget == null) return;
+            FaceTarget(Character.ObjectTargeter.CurrentTarget.transform);
         }
     }
 }

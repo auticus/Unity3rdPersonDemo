@@ -1,14 +1,10 @@
-﻿using Unity3rdPersonDemo.Characters;
+﻿using Unity3rdPersonDemo.Locomotion;
 using UnityEngine;
 
 namespace Unity3rdPersonDemo.StateMachine.States.Enemy
 {
     public class EnemyIdleState : EnemyBaseState, IGameState
     {
-        private readonly int LocomotionBlendTreeHash = Animator.StringToHash("LocomotionBlendTree");
-        private readonly int SpeedHash = Animator.StringToHash("Speed");
-        private const float ANIMATION_BLEND_TIME = 0.2f;
-
         public EnemyIdleState(EnemyStateMachine stateMachine) : base(stateMachine)
         { }
 
@@ -20,15 +16,13 @@ namespace Unity3rdPersonDemo.StateMachine.States.Enemy
         public void Tick(float deltaTime)
         {
             //todo: apply forces here
-
             if (IsPlayerInRange())
             {
-                //todo: transition to chasing state
-                Debug.Log("The player is in range of my rage!!");
+                StateMachine.SwitchState(new EnemyPursuitState(StateMachine));
                 return;
             }
 
-            StateMachine.Animator.SetFloat(SpeedHash, 0, Locomotion.DAMP_SMOOTH_TIME, deltaTime);
+            StateMachine.Locomotion.Process(LocomotionTypes.FreeLook, deltaTime);
         }
 
         public void Exit()

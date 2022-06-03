@@ -178,6 +178,7 @@ GameObject:
   - component: {fileID: 8619462665796341267}
   - component: {fileID: 2365577568088696515}
   - component: {fileID: 5282483081103819967}
+  - component: {fileID: 3821053584938863285}
   m_Layer: 0
   m_Name: Enemy_Cultist
   m_TagString: Untagged
@@ -259,9 +260,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <Animator>k__BackingField: {fileID: 5282483081103819967}
   <CharacterController>k__BackingField: {fileID: 5256511884846197400}
-  <DefaultMovementSpeed>k__BackingField: 0
-  <Force>k__BackingField: {fileID: 0}
-  <PlayerDetectRange>k__BackingField: 0
+  <DefaultMovementSpeed>k__BackingField: 3
+  <Force>k__BackingField: {fileID: 2365577568088696515}
+  <NavAgent>k__BackingField: {fileID: 3821053584938863285}
+  <PlayerDetectRange>k__BackingField: 10
   <RotationDamping>k__BackingField: 0
 --- !u!114 &2365577568088696515
 MonoBehaviour:
@@ -297,6 +299,28 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!195 &3821053584938863285
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 907053538130171138}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.5
+  m_Speed: 1
+  m_Acceleration: 0
+  avoidancePriority: 50
+  m_AngularSpeed: 0
+  m_StoppingDistance: 1
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 2
+  m_BaseOffset: 0
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
 --- !u!1 &948499163020718507
 GameObject:
   m_ObjectHideFlags: 0

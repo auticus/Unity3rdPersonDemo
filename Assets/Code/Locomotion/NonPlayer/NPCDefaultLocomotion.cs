@@ -1,11 +1,14 @@
 ﻿using UnityEngine;
 
-namespace Unity3rdPersonDemo.Characters.NonPlayer
+namespace Unity3rdPersonDemo.Locomotion.NonPlayer
 {
-    public class NPCDefaultLocomotion : Locomotion
+    /// <summary>
+    /// NPC Locomotion with no player targets.
+    /// </summary>
+    public class NPCDefaultLocomotion : NonPlayerLocomotion
     {
         private readonly int SpeedHash = Animator.StringToHash("Speed"); //pass a hash instead of a string as the int is faster
-        public NPCDefaultLocomotion(IMoveable character) : base(character)
+        public NPCDefaultLocomotion(INonPlayerMoveable character) : base(character)
         { }
 
         public override void Process(float deltaTime)
@@ -24,7 +27,7 @@ namespace Unity3rdPersonDemo.Characters.NonPlayer
 
         private Vector3 CalculateRelativeMovementVector()
         {
-            //todo:
+            //todo: currently he just sits there and does nothing
             return Vector3.zero;
         }
     }

@@ -1,5 +1,5 @@
-﻿using Unity3rdPersonDemo.Characters;
-using Unity3rdPersonDemo.Combat;
+﻿using Unity3rdPersonDemo.Combat;
+using Unity3rdPersonDemo.Locomotion;
 using UnityEngine;
 
 namespace Unity3rdPersonDemo.StateMachine.States
