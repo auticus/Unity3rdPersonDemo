@@ -256,3 +256,10 @@ From here in the SCENE view as you scroll through the animation keyframes you'll
 >> Put the needle to the frame where you want to turn it on.
 >> Click the AddEvent button (its on the left... its a rectangle with a + sign - can be hard to see its under the frame key box.
 >> In the function dropdown on the right - it will say Function:  and this is where you enable and disable.
+
+
+!! THINGS I LEARNED SO FAR !!
+I put the weapon damage on the Player game object instead of the weapon collider object.  That was a mistake as it was not registering when I was hitting the enemy and rather was
+registering when the player body hit the enemy.
+
+!!Make sure that the collider of your weapon has code to detect when it triggers.!!

@@ -4,45 +4,21 @@ using UnityEngine;
 namespace Unity3rdPersonDemo.Combat
 {
     /// <summary>
-    /// Represents the currently equipped weapon of the character and is a component of the Player object itself.
+    /// Represents a weapon.
     /// </summary>
     public class Weapon : MonoBehaviour
     {
+        [SerializeField][Tooltip("The base damage of the weapon")] private int baseDamage;
         [SerializeField] private Collider owningCharacter;
-        [SerializeField] [Tooltip("The collider of the currently equipped weapon")] private GameObject weaponCollider;
-        [SerializeField] [Tooltip("The base damage of the weapon")] private int baseDamage;
-        
+
         private readonly List<Collider> _itemsAlreadyHit = new();
-        private float _characterAnimationDamageMultiplier;  //animation states may cause more or less damage
-        
-        public void EnableWeapon()
-        {
-            //called by the animator
-            _itemsAlreadyHit.Clear();
-            weaponCollider.SetActive(true);
-        }
-
-        public void DisableWeapon()
-        {
-            //called by the animator
-            weaponCollider.SetActive(false);
-        }
-
-        /// <summary>
-        /// Sets the multiplier for any damage done based on the animation.
-        /// </summary>
-        /// <param name="damageMultiplier"></param>
-        public void SetAnimationDamageMultiplier(float damageMultiplier)
-        {
-            if (damageMultiplier == 0) damageMultiplier = 1;
-            _characterAnimationDamageMultiplier = damageMultiplier;
-        }
+        private float _characterAnimationDamageMultiplier = 1f;  //animation states may cause more or less damage
 
         private void OnTriggerEnter(Collider other)
         {
             if (other == owningCharacter) return;
             if (_itemsAlreadyHit.Contains(other)) return;
-            
+
             //This should trigger when the collider on the weapon collides with a rigid body
             other.gameObject.TryGetComponent(out Health health);
 
@@ -53,5 +29,17 @@ namespace Unity3rdPersonDemo.Combat
             health.DamageHealth((int)Mathf.Ceil(baseDamage * _characterAnimationDamageMultiplier));
             _itemsAlreadyHit.Add(other);
         }
+
+        /// <summary>
+        /// Sets the weapon damage multiplier which will multiply the damage of the weapon by the value passed.
+        /// </summary>
+        /// <param name="multiplier"></param>
+        public void SetDamageMultiplier(float multiplier)
+        {
+            if (multiplier == 0) multiplier = 1;
+            _characterAnimationDamageMultiplier = multiplier;
+        }
+
+        public void ClearItemsAlreadyHit() => _itemsAlreadyHit.Clear();
     }
 }

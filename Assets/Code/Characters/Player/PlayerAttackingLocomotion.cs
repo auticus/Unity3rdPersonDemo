@@ -1,10 +1,10 @@
 ﻿using UnityEngine;
 
-namespace Unity3rdPersonDemo.Characters
+namespace Unity3rdPersonDemo.Characters.Player
 {
-    public class PlayerAttackingLocomotion : Locomotion
+    public class PlayerAttackingLocomotion : PlayerLocomotion
     {
-        public PlayerAttackingLocomotion(IMoveable character) : base(character)
+        public PlayerAttackingLocomotion(IPlayerMoveable character) : base(character)
         { }
 
         public override void Process(float deltaTime)

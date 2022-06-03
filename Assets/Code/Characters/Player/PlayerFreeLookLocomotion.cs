@@ -1,12 +1,12 @@
 ﻿using UnityEngine;
 
-namespace Unity3rdPersonDemo.Characters
+namespace Unity3rdPersonDemo.Characters.Player
 {
-    public class PlayerFreeLookLocomotion : Locomotion
+    public class PlayerFreeLookLocomotion : PlayerLocomotion
     {
         private readonly int FreeLookSpeedHash = Animator.StringToHash("FreeLookSpeed"); //pass a hash instead of a string as the int is faster
         
-        public PlayerFreeLookLocomotion(IMoveable character) : base(character)
+        public PlayerFreeLookLocomotion(IPlayerMoveable character) : base(character)
         { }
 
         public override void Process(float deltaTime)
@@ -19,7 +19,7 @@ namespace Unity3rdPersonDemo.Characters
             }
 
             Character.Animator.SetFloat(FreeLookSpeedHash, Locomotion.RUN_FORWARD, Locomotion.DAMP_SMOOTH_TIME, deltaTime);
-            HandleMovement(movement * Character.FreeLookMovementSpeed, deltaTime);
+            HandleMovement(movement * Character.DefaultMovementSpeed, deltaTime);
             HandleRotation(movement, deltaTime);
         }
 

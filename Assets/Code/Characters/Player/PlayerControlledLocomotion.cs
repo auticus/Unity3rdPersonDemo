@@ -1,12 +1,12 @@
 ﻿using System.Collections.Generic;
 
-namespace Unity3rdPersonDemo.Characters
+namespace Unity3rdPersonDemo.Characters.Player
 {
     public class PlayerControlledLocomotion
     {
         private readonly Dictionary<LocomotionTypes, ILocomotion> _locomotionMap;
 
-        public PlayerControlledLocomotion(IMoveable character)
+        public PlayerControlledLocomotion(IPlayerMoveable character)
         {
             _locomotionMap = new Dictionary<LocomotionTypes, ILocomotion>
             {

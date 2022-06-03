@@ -47,7 +47,7 @@ namespace Unity3rdPersonDemo.Characters
             Character.EntityTransform.rotation = Quaternion.Lerp(
                 Character.EntityTransform.rotation,
                 Quaternion.LookRotation(moveVector),
-                deltaTime * Character.FreeLookRotationDamping);
+                deltaTime * Character.RotationDamping);
 
         /// <summary>
         /// Given a target, will turn to face that target.

@@ -37,7 +37,7 @@ namespace Unity3rdPersonDemo.StateMachine.States
             _currentAttackChainIndex = attackIndex;
             _currentAttackCategory = attack;
 
-            StateMachine.Weapon.SetAnimationDamageMultiplier(_attackAnimationChain[_currentAttackChainIndex].AttackAttributeMultiplier);
+            StateMachine.WeaponHandler.SetAnimationDamageMultiplier(_attackAnimationChain[_currentAttackChainIndex].AttackAttributeMultiplier);
         }
 
         public void Enter()

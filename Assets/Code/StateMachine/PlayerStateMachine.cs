@@ -1,4 +1,5 @@
 ﻿using Unity3rdPersonDemo.Characters;
+using Unity3rdPersonDemo.Characters.Player;
 using Unity3rdPersonDemo.Combat;
 using Unity3rdPersonDemo.Combat.Targeting;
 using Unity3rdPersonDemo.Input;
@@ -10,7 +11,7 @@ namespace Unity3rdPersonDemo.StateMachine
     /// <summary>
     /// Primary controller of the Player.
     /// </summary>
-    public class PlayerStateMachine : StateMachine, IMoveable
+    public class PlayerStateMachine : StateMachine, IPlayerMoveable
     {
         //todo: the name of this class is a bit misleading as it is a type of State StateMachine but is also controlling movement etc.
         //its more a player controller.
@@ -19,12 +20,12 @@ namespace Unity3rdPersonDemo.StateMachine
         [field: SerializeField] public InputReader InputReader { get; private set; }
         [field: SerializeField] public Animator Animator { get; private set; }
         [field: SerializeField] public CharacterController CharacterController { get; private set; }
-        [field: SerializeField] public float FreeLookMovementSpeed { get; private set; }
+        [field: SerializeField] public float DefaultMovementSpeed { get; private set; }
         [field: SerializeField] public float TargetingMovementSpeed { get; private set; }
-        [field: SerializeField] public float FreeLookRotationDamping { get; private set; }
+        [field: SerializeField] public float RotationDamping { get; private set; }
         [field: SerializeField] public Targeter ObjectTargeter { get; private set; }
         [field: SerializeField] public ForceReceiver Force { get; private set; }
-        [field: SerializeField] public Weapon Weapon { get; private set; }
+        [field: SerializeField] public WeaponHandler WeaponHandler { get; private set; }
         public Transform MainCameraTransform { get; private set; }
         public PlayerControlledLocomotion Locomotion { get; private set; }
 

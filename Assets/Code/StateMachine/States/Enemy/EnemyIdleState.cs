@@ -19,6 +19,15 @@ namespace Unity3rdPersonDemo.StateMachine.States.Enemy
 
         public void Tick(float deltaTime)
         {
+            //todo: apply forces here
+
+            if (IsPlayerInRange())
+            {
+                //todo: transition to chasing state
+                Debug.Log("The player is in range of my rage!!");
+                return;
+            }
+
             StateMachine.Animator.SetFloat(SpeedHash, 0, Locomotion.DAMP_SMOOTH_TIME, deltaTime);
         }
 

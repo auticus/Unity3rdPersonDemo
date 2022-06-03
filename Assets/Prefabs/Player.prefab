@@ -1137,12 +1137,12 @@ MonoBehaviour:
   <InputReader>k__BackingField: {fileID: 6950863633096382907}
   <Animator>k__BackingField: {fileID: 6080759247348236829}
   <CharacterController>k__BackingField: {fileID: 7046390397903702752}
-  <FreeLookMovementSpeed>k__BackingField: 3.5
+  <DefaultMovementSpeed>k__BackingField: 8
   <TargetingMovementSpeed>k__BackingField: 6
-  <FreeLookRotationDamping>k__BackingField: 8
-  <ObjectTargeter>k__BackingField: {fileID: 0}
+  <RotationDamping>k__BackingField: 8
+  <ObjectTargeter>k__BackingField: {fileID: 8515896442201265998}
   <Force>k__BackingField: {fileID: 1192652686744315790}
-  <Weapon>k__BackingField: {fileID: 5188692072690762007}
+  <WeaponHandler>k__BackingField: {fileID: 5188692072690762007}
 --- !u!114 &1192652686744315790
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1182,9 +1182,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0eec317b4faf39648b5cba209f961efb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  owningCharacter: {fileID: 7046390397903702752}
-  weaponCollider: {fileID: 0}
-  baseDamage: 10
+  weapon: {fileID: 0}
 --- !u!1 &4351188083359354921
 GameObject:
   m_ObjectHideFlags: 0

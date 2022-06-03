@@ -176,8 +176,8 @@ GameObject:
   - component: {fileID: 5014465043645749873}
   - component: {fileID: 1813204717616739427}
   - component: {fileID: 8619462665796341267}
+  - component: {fileID: 2365577568088696515}
   - component: {fileID: 5282483081103819967}
-  - component: {fileID: 907195466797554851}
   m_Layer: 0
   m_Name: Enemy_Cultist
   m_TagString: Untagged
@@ -258,6 +258,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <Animator>k__BackingField: {fileID: 5282483081103819967}
+  <CharacterController>k__BackingField: {fileID: 5256511884846197400}
+  <DefaultMovementSpeed>k__BackingField: 0
+  <Force>k__BackingField: {fileID: 0}
+  <PlayerDetectRange>k__BackingField: 0
+  <RotationDamping>k__BackingField: 0
+--- !u!114 &2365577568088696515
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 907053538130171138}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 90a63a43e3b58ff41819ebe0fb5149c9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  controller: {fileID: 5256511884846197400}
+  drag: 0.1
 --- !u!95 &5282483081103819967
 Animator:
   serializedVersion: 4
@@ -278,20 +297,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!136 &907195466797554851
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 907053538130171138}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.4
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 1, z: 0}
 --- !u!1 &948499163020718507
 GameObject:
   m_ObjectHideFlags: 0

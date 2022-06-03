@@ -1,13 +1,13 @@
 ﻿using UnityEngine;
 
-namespace Unity3rdPersonDemo.Characters
+namespace Unity3rdPersonDemo.Characters.Player
 {
-    public class PlayerTargetingLocomotion : Locomotion
+    public class PlayerTargetingLocomotion : PlayerLocomotion
     {
         private readonly int TargetingForwardSpeedHash = Animator.StringToHash("TargetingForwardSpeed"); //pass a hash instead of a string as the int is faster
         private readonly int TargetingRightSpeedHash = Animator.StringToHash("TargetingRightSpeed"); //pass a hash instead of a string as the int is faster
 
-        public PlayerTargetingLocomotion(IMoveable character) : base(character)
+        public PlayerTargetingLocomotion(IPlayerMoveable character) : base(character)
         { }
 
         public override void Process(float deltaTime)

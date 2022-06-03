@@ -1,6 +1,4 @@
-﻿using Unity3rdPersonDemo.Combat.Targeting;
-using Unity3rdPersonDemo.Input;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Unity3rdPersonDemo.Characters
 {
@@ -11,13 +9,9 @@ namespace Unity3rdPersonDemo.Characters
     {
         Animator Animator { get; }
         CharacterController CharacterController { get; }
+        float DefaultMovementSpeed { get; }
         Transform EntityTransform { get; }
         ForceReceiver Force { get; }
-        float FreeLookMovementSpeed { get; }
-        float FreeLookRotationDamping { get; }
-        InputReader InputReader { get; }
-        Transform MainCameraTransform { get; }
-        Targeter ObjectTargeter { get; }
-        float TargetingMovementSpeed { get; }
+        float RotationDamping { get; }
     }
 }
