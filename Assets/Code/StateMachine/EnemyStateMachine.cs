@@ -14,6 +14,7 @@ namespace Unity3rdPersonDemo.StateMachine
         [field: SerializeField] public ForceReceiver Force { get; private set; }
         [field: SerializeField] public NavMeshAgent NavAgent { get; private set; }
         [field: SerializeField] public float PlayerDetectRange { get; private set; }
+        [field: SerializeField] public float AttackRange { get; private set; }
         [field: SerializeField] public float RotationDamping { get; private set; }
 
         public GameObject Player { get; private set; }

@@ -36,6 +36,8 @@ Then in PlayerStateMachine >> added the CharacterController as well and then in 
 >> Min Distance - changed to 0 to prevent jittering
 Once this has been added - colissions etc are just handled for us.  
 
+!! OF IMPORTANT NOTE - Use of Character Controller vs the Rigid Body / Physics which most other people use - Character Controller requires writing your own physics !!
+
 INTERACT WITH MOVEMENT CODE TO BLEND WITH ANIMATION
 Mixamo animations will actually move the model.  We don't want that.
 Open up the Running animation.  Remove any keyframes that modify the Z position.
@@ -263,3 +265,16 @@ I put the weapon damage on the Player game object instead of the weapon collider
 registering when the player body hit the enemy.
 
 !!Make sure that the collider of your weapon has code to detect when it triggers.!!
+
+!! NAV MESH !!
+Window >> AI >> Navigation
+Make sure terrain is static!  Make sure all houses and items are static for the nav mesh!
+!! Make sure you have gizmos turned on to see it! !!
+!! Objects must be marked static for the nav mesh to go around it!!
+
+>> Enemy prefabs add a nav mesh agent
+Agent will calculate where we should move but we will actually move them so we can apply the external forces
+
+>> Nav Mesh Agent speed = 1 (we dont care)
+>> Angular Speed = 0, Acceleration = 0, Stopping Distance = 1 (so we stop when we need)
+

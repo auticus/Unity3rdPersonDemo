@@ -2,7 +2,7 @@
 
 namespace Unity3rdPersonDemo.StateMachine.States.Enemy
 {
-    public abstract class EnemyBaseState
+    public abstract class EnemyBaseState : IGameState
     {
         protected readonly int LocomotionBlendTreeHash = Animator.StringToHash("LocomotionBlendTree");
         protected readonly int SpeedHash = Animator.StringToHash("Speed");
@@ -15,11 +15,20 @@ namespace Unity3rdPersonDemo.StateMachine.States.Enemy
             StateMachine = stateMachine;
         }
 
-        protected bool IsPlayerInRange()
+        protected bool IsPlayerInRange(float rangeToCheck)
         {
             //dealing with squaring is more performant than forcing the engine to work with magnitude
             var playerSqrMagnitude = (StateMachine.Player.transform.position - StateMachine.transform.position).sqrMagnitude;
-            return playerSqrMagnitude <= StateMachine.PlayerDetectRange * StateMachine.PlayerDetectRange;
+            return playerSqrMagnitude <= rangeToCheck * rangeToCheck;
         }
+
+        public virtual void Enter()
+        { }
+
+        public virtual void Tick(float deltaTime)
+        { }
+
+        public virtual void Exit()
+        { }
     }
 }

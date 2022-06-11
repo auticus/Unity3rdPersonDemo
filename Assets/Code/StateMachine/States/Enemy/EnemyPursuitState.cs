@@ -1,35 +1,39 @@
-﻿using Unity3rdPersonDemo.Locomotion;
+﻿using Assets.Code.StateMachine.States.Enemy;
+using Unity3rdPersonDemo.Locomotion;
 using UnityEngine;
 
 namespace Unity3rdPersonDemo.StateMachine.States.Enemy
 {
-    public class EnemyPursuitState : EnemyBaseState, IGameState
+    public class EnemyPursuitState : EnemyBaseState
     {
         public EnemyPursuitState(EnemyStateMachine stateMachine) : base(stateMachine)
         {
         }
 
-        public void Enter()
+        public override void Enter()
         {
-            Debug.Log("Am now pursuing");
             StateMachine.Animator.CrossFadeInFixedTime(LocomotionBlendTreeHash, ANIMATION_BLEND_TIME);
         }
 
-        public void Tick(float deltaTime)
+        public override void Tick(float deltaTime)
         {
             //todo: apply forces here
-            if (!IsPlayerInRange())
+            if (!IsPlayerInRange(StateMachine.PlayerDetectRange))
             {
                 StateMachine.SwitchState(new EnemyIdleState(StateMachine));
+                return;
+            }
+            if (IsPlayerInRange(StateMachine.AttackRange))
+            {
+                StateMachine.SwitchState(new EnemyAttackingState(StateMachine));
                 return;
             }
 
             StateMachine.Locomotion.Process(LocomotionTypes.Pursuit, deltaTime);
         }
 
-        public void Exit()
+        public override void Exit()
         {
-            Debug.Log("No longer pursuing");
             StateMachine.NavAgent.ResetPath(); //stop trying to pursue when we exit!
             StateMachine.NavAgent.velocity = Vector3.zero;
         }
