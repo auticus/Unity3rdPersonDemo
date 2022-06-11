@@ -278,3 +278,6 @@ Agent will calculate where we should move but we will actually move them so we c
 >> Nav Mesh Agent speed = 1 (we dont care)
 >> Angular Speed = 0, Acceleration = 0, Stopping Distance = 1 (so we stop when we need)
 
+ADDING WEAPON LOGIC TO ENEMY
+One thing different, he's got a rigid body on the sword collider game object.  Apparently both objects need that to detect collisions?
+I have since corrected this and added rigid body  kinematics to the weapon colliders as well.

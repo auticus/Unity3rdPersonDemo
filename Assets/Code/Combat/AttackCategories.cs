@@ -2,7 +2,8 @@
 {
     public enum AttackCategories
     {
-        Basic = 0
+        SingleHandedBasic = 0,
+        ThreeSwingBasicOneHandCombo
     }
 
 }

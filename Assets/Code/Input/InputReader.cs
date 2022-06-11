@@ -61,7 +61,7 @@ namespace Unity3rdPersonDemo.Input
         public void OnAttack(InputAction.CallbackContext context)
         {
             if (!context.performed) return;
-            OnAttackClicked?.Invoke(AttackCategories.Basic);
+            OnAttackClicked?.Invoke(AttackCategories.ThreeSwingBasicOneHandCombo);
         }
     }
 }

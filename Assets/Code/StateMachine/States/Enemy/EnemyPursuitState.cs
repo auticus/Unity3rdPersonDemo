@@ -1,4 +1,6 @@
-﻿using Assets.Code.StateMachine.States.Enemy;
+﻿using System.Linq;
+using Assets.Code.StateMachine.States.Enemy;
+using Unity3rdPersonDemo.Combat;
 using Unity3rdPersonDemo.Locomotion;
 using UnityEngine;
 
@@ -25,7 +27,9 @@ namespace Unity3rdPersonDemo.StateMachine.States.Enemy
             }
             if (IsPlayerInRange(StateMachine.AttackRange))
             {
-                StateMachine.SwitchState(new EnemyAttackingState(StateMachine));
+                //todo: this will need changed to be able to intelligently cycle through what attacks are available but for now just choosing a single basic
+                var attackCategory = StateMachine.AttackTypes.First();
+                StateMachine.SwitchState(new EnemyAttackingState(StateMachine, attackCategory));
                 return;
             }
 
