@@ -7,7 +7,7 @@ namespace Unity3rdPersonDemo.StateMachine.States
     /// <summary>
     /// Represents the player when they are locked on to a target.
     /// </summary>
-    public class PlayerTargetingState : PlayerBaseState, IGameState
+    public class PlayerTargetingState : PlayerBaseState
     {
         private readonly int TargetingCameraBlendTreeHash = Animator.StringToHash("TargetingBlendTree");
         private bool _doNotClearTargetOnExit = false;
@@ -16,14 +16,14 @@ namespace Unity3rdPersonDemo.StateMachine.States
         public PlayerTargetingState(PlayerStateMachine stateMachine) : base(stateMachine)
         { }
         
-        public void Enter()
+        public override void Enter()
         {
             StateMachine.InputReader.OnTargetingClicked += InputReaderOnTargetingClicked;
             StateMachine.InputReader.OnAttackClicked += InputReaderOnAttackClicked;
             StateMachine.Animator.CrossFadeInFixedTime(TargetingCameraBlendTreeHash, ANIMATION_BLEND_TIME);
         }
         
-        public void Tick(float deltaTime)
+        public override void Tick(float deltaTime)
         {
             //if we're in target mode but we lose our target, switch state out to free look state
             if (StateMachine.ObjectTargeter.CurrentTarget == null)
@@ -34,7 +34,7 @@ namespace Unity3rdPersonDemo.StateMachine.States
             StateMachine.Locomotion.Process(LocomotionTypes.Targeting, deltaTime);
         }
 
-        public void Exit()
+        public override void Exit()
         {
             StateMachine.InputReader.OnTargetingClicked -= InputReaderOnTargetingClicked;
             StateMachine.InputReader.OnAttackClicked -= InputReaderOnAttackClicked;

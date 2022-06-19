@@ -2,7 +2,7 @@
 
 namespace Unity3rdPersonDemo.StateMachine.States
 {
-    public abstract class BaseState
+    public abstract class BaseState : IGameState
     {
         private const string ATTACK_TAG = "Attack";
         private const int DEFAULT_LAYER = 0;
@@ -31,5 +31,14 @@ namespace Unity3rdPersonDemo.StateMachine.States
 
             return 0f;
         }
+
+        public virtual void Enter()
+        { }
+
+        public virtual void Tick(float deltaTime)
+        { }
+
+        public virtual void Exit()
+        { }
     }
 }

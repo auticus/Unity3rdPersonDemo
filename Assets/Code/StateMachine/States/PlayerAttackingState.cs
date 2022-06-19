@@ -4,7 +4,7 @@ using Unity3rdPersonDemo.Locomotion;
 
 namespace Unity3rdPersonDemo.StateMachine.States
 {
-    public class PlayerAttackingState : PlayerBaseState, IGameState
+    public class PlayerAttackingState : PlayerBaseState
     {
         private readonly IList<AttackAnimation> _attackAnimationChain;
         private readonly int _currentAttackChainIndex;
@@ -41,7 +41,7 @@ namespace Unity3rdPersonDemo.StateMachine.States
                 _attackAnimationChain[_currentAttackChainIndex].KnockbackMultiplier);
         }
 
-        public void Enter()
+        public override void Enter()
         {
             StateMachine.InputReader.OnAttackClicked += TryComboAttack;
 
@@ -49,7 +49,7 @@ namespace Unity3rdPersonDemo.StateMachine.States
             StateMachine.Animator.CrossFadeInFixedTime(_attackAnimationChain[_currentAttackChainIndex].AnimationName, _attackAnimationChain[_currentAttackChainIndex].TransitionDuration);
         }
 
-        public void Tick(float deltaTime)
+        public override void Tick(float deltaTime)
         {
             StateMachine.Locomotion.Process(LocomotionTypes.Attacking, deltaTime);
             var currentAnimationTime = GetCurrentAnimationCompletedTime(StateMachine.Animator);
@@ -68,7 +68,7 @@ namespace Unity3rdPersonDemo.StateMachine.States
             _lastAnimationTime = currentAnimationTime;
         }
 
-        public void Exit()
+        public override void Exit()
         {
             StateMachine.InputReader.OnAttackClicked -= TryComboAttack;
         }

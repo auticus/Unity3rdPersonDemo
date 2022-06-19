@@ -11,7 +11,7 @@ namespace Unity3rdPersonDemo.StateMachine
     /// <summary>
     /// Primary controller of the Player.
     /// </summary>
-    public class PlayerStateMachine : StateMachine, IPlayerMoveable
+    public class PlayerStateMachine : StateMachine, IPlayerMoveable, IImpactable
     {
         //todo: the name of this class is a bit misleading as it is a type of State StateMachine but is also controlling movement etc.
         //its more a player controller.
@@ -34,6 +34,13 @@ namespace Unity3rdPersonDemo.StateMachine
             MainCameraTransform = Camera.main.transform;
             SwitchState(new PlayerFreeLookState(this));
             Locomotion = new PlayerControlledLocomotion(this);
+        }
+
+        /// <inheritdoc/>
+        public void PerformImpact()
+        {
+            var defaultImpactDuration = 0.5f;
+            SwitchState(new PlayerImpactState(this, defaultImpactDuration));
         }
     }
 }

@@ -5,6 +5,7 @@
         FreeLook = 0,
         Targeting,
         Attacking,
-        Pursuit
+        Pursuit,
+        ImpactResponse
     }
 }

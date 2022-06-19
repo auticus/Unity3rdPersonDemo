@@ -7,7 +7,7 @@ namespace Unity3rdPersonDemo.StateMachine.States
     /// <summary>
     /// Represents the player state where they are freely moving about the board.
     /// </summary>
-    internal class PlayerFreeLookState : PlayerBaseState, IGameState
+    public class PlayerFreeLookState : PlayerBaseState
     {
         private readonly int FreeLookCameraBlendTreeHash = Animator.StringToHash("FreeLookBlendTree");
         private const float ANIMATION_BLEND_TIME = 0.2f;
@@ -15,19 +15,19 @@ namespace Unity3rdPersonDemo.StateMachine.States
         public PlayerFreeLookState(PlayerStateMachine stateMachine) : base(stateMachine)
         { }
 
-        public void Enter()
+        public override void Enter()
         {
             StateMachine.InputReader.OnTargetingClicked += InputReaderOnTargetingClicked;
             StateMachine.InputReader.OnAttackClicked += InputReaderOnAttackClicked;
             StateMachine.Animator.CrossFadeInFixedTime(FreeLookCameraBlendTreeHash, ANIMATION_BLEND_TIME);
         }
 
-        public void Tick(float deltaTime)
+        public override void Tick(float deltaTime)
         {
             StateMachine.Locomotion.Process(LocomotionTypes.FreeLook, deltaTime);
         }
 
-        public void Exit()
+        public override void Exit()
         {
             StateMachine.InputReader.OnTargetingClicked -= InputReaderOnTargetingClicked;
             StateMachine.InputReader.OnAttackClicked -= InputReaderOnAttackClicked;

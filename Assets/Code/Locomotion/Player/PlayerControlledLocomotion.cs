@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Assets.Code.Locomotion.Player;
 
 namespace Unity3rdPersonDemo.Locomotion.Player
 {
@@ -12,7 +13,8 @@ namespace Unity3rdPersonDemo.Locomotion.Player
             {
                 { LocomotionTypes.FreeLook, new PlayerFreeLookLocomotion(character) },
                 { LocomotionTypes.Targeting, new PlayerTargetingLocomotion(character) },
-                { LocomotionTypes.Attacking, new PlayerAttackingLocomotion(character) }
+                { LocomotionTypes.Attacking, new PlayerAttackingLocomotion(character) },
+                { LocomotionTypes.ImpactResponse, new PlayerImpactedLocomotion(character)}
             };
         }
 

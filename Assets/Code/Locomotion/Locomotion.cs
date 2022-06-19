@@ -27,7 +27,7 @@ namespace Unity3rdPersonDemo.Locomotion
         public abstract void Process(float deltaTime);
 
         /// <summary>
-        /// Handles movement involving an idle character or one that has no movement direction applied.
+        /// Handles movement involving an idle character or one that has no player-inputted movement direction applied.
         /// </summary>
         /// <param name="deltaTime"></param>
         protected void HandleMovement(float deltaTime) 

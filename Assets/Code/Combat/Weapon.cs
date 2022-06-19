@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Unity3rdPersonDemo.Locomotion;
+using Unity3rdPersonDemo.StateMachine;
 using UnityEditor.Rendering;
 using UnityEngine;
 
@@ -27,6 +28,7 @@ namespace Unity3rdPersonDemo.Combat
             //This should trigger when the collider on the weapon collides with a rigid body
             other.gameObject.TryGetComponent(out Health health);
             other.gameObject.TryGetComponent(out ForceReceiver forceReceiver);
+            other.gameObject.TryGetComponent(out IImpactable impactReceiver);
 
             if (health != null)
             {
@@ -39,7 +41,11 @@ namespace Unity3rdPersonDemo.Combat
                 var knockBackDirection = (other.transform.position - owningCharacter.transform.position).normalized;
                 forceReceiver.AddForce(knockBackDirection * baseKnockback * _characterAnimationKnockbackMultiplier);
             }
-            
+
+            if (impactReceiver != null)
+            {
+                impactReceiver.PerformImpact();
+            }
         }
 
         /// <summary>
