@@ -1,6 +1,6 @@
 ﻿namespace Unity3rdPersonDemo.StateMachine.States
 {
-    public abstract class PlayerBaseState
+    public abstract class PlayerBaseState : BaseState
     {
         protected PlayerStateMachine StateMachine { get; }
 

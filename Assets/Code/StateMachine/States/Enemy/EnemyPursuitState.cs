@@ -1,6 +1,5 @@
 ﻿using System.Linq;
 using Assets.Code.StateMachine.States.Enemy;
-using Unity3rdPersonDemo.Combat;
 using Unity3rdPersonDemo.Locomotion;
 using UnityEngine;
 

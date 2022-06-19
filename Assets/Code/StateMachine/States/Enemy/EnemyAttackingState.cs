@@ -9,6 +9,9 @@ namespace Assets.Code.StateMachine.States.Enemy
     public class EnemyAttackingState : EnemyBaseState
     {
         private const int FIRST_ATTACK_INDEX = 0;
+        private const int DEFAULT_LAYER = 0;
+        private const string ATTACK_TAG = "Attack";
+
         private readonly int _attackHash = Animator.StringToHash("Attack");
         private readonly IList<AttackAnimation> _attackAnimationChain;
         private readonly int _currentAttackChainIndex;
@@ -34,6 +37,26 @@ namespace Assets.Code.StateMachine.States.Enemy
         public override void Tick(float deltaTime)
         {
             //todo 
+        }
+
+        private float GetCurrentAnimationCompletedTime()
+        {
+            // which state are we in to which animation if blending?
+            var currentState = StateMachine.Animator.GetCurrentAnimatorStateInfo(DEFAULT_LAYER); //only using layer 0 in this project
+            var nextState = StateMachine.Animator.GetNextAnimatorStateInfo(DEFAULT_LAYER);
+
+            if (StateMachine.Animator.IsInTransition(DEFAULT_LAYER) && nextState.IsTag(ATTACK_TAG)) //only using layer 0
+            {
+                //we are transitioning to an attack so get the data from next state
+                return nextState.normalizedTime;
+            }
+            if (!StateMachine.Animator.IsInTransition(DEFAULT_LAYER) && currentState.IsTag(ATTACK_TAG))
+            {
+                //not transitioning but playing attack animation
+                return currentState.normalizedTime;
+            }
+
+            return 0f;
         }
     }
 }

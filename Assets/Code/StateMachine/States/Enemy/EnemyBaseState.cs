@@ -2,7 +2,7 @@
 
 namespace Unity3rdPersonDemo.StateMachine.States.Enemy
 {
-    public abstract class EnemyBaseState : IGameState
+    public abstract class EnemyBaseState : BaseState, IGameState
     {
         protected readonly int LocomotionBlendTreeHash = Animator.StringToHash("LocomotionBlendTree");
         protected readonly int SpeedHash = Animator.StringToHash("Speed");

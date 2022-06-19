@@ -9,8 +9,6 @@ namespace Unity3rdPersonDemo.StateMachine.States
         private readonly IList<AttackAnimation> _attackAnimationChain;
         private readonly int _currentAttackChainIndex;
         private readonly AttackCategories _currentAttackCategory;
-        private const string ATTACK_TAG = "Attack";
-        private const int DEFAULT_LAYER = 0;
         private const int FIRST_ATTACK_INDEX = 0;
         private float _lastAnimationTime;
         private bool _forceApplied;
@@ -51,7 +49,7 @@ namespace Unity3rdPersonDemo.StateMachine.States
         public void Tick(float deltaTime)
         {
             StateMachine.Locomotion.Process(LocomotionTypes.Attacking, deltaTime);
-            var currentAnimationTime = GetCurrentAnimationCompletedTime();
+            var currentAnimationTime = GetCurrentAnimationCompletedTime(StateMachine.Animator);
             if (currentAnimationTime >= 1f) 
             {
                 //animation has concluded, move back to locomotion state that was passed in
@@ -99,26 +97,6 @@ namespace Unity3rdPersonDemo.StateMachine.States
             if (_forceApplied) return;
             StateMachine.Force.AddForce(StateMachine.transform.forward * _attackAnimationChain[_currentAttackChainIndex].Force);
             _forceApplied = true;
-        }
-
-        private float GetCurrentAnimationCompletedTime()
-        {
-            // which state are we in to which animation if blending?
-            var currentState = StateMachine.Animator.GetCurrentAnimatorStateInfo(DEFAULT_LAYER); //only using layer 0 in this project
-            var nextState = StateMachine.Animator.GetNextAnimatorStateInfo(DEFAULT_LAYER);
-
-            if (StateMachine.Animator.IsInTransition(0) && nextState.IsTag(ATTACK_TAG)) //only using layer 0
-            {
-                //we are transitioning to an attack so get the data from next state
-                return nextState.normalizedTime;
-            }
-            if (!StateMachine.Animator.IsInTransition(DEFAULT_LAYER) && currentState.IsTag(ATTACK_TAG))
-            {
-                //not transitioning but playing attack animation
-                return currentState.normalizedTime;
-            }
-
-            return 0f;
         }
     }
 }
