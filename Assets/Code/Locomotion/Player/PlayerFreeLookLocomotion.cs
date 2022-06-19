@@ -12,9 +12,10 @@ namespace Unity3rdPersonDemo.Locomotion.Player
         public override void Process(float deltaTime)
         {
             var movement = CalculateRelativeMovementVector();
-            if (movement == Vector3.zero)
+            if (movement == Vector3.zero) //character is standing around and no movement on the controller
             {
                 Character.Animator.SetFloat(FreeLookSpeedHash, Locomotion.IDLE, Locomotion.DAMP_SMOOTH_TIME, deltaTime);
+                HandleMovement(deltaTime);
                 return;
             }
 

@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.AI;
 
 namespace Unity3rdPersonDemo.Locomotion
 {
@@ -13,6 +14,7 @@ namespace Unity3rdPersonDemo.Locomotion
 
         [SerializeField] private CharacterController controller;
         [SerializeField] [Tooltip("Smoothing of the degradation of force, the higher it is the more slide the character has")] private float drag = 0.1f;
+        [SerializeField] [Tooltip("Used for non player characters that rely on nav mesh agents to move")] private NavMeshAgent navAgent;
 
         /// <summary>
         /// Gets how much we should be able to move based on our gravity velocity.
@@ -26,11 +28,13 @@ namespace Unity3rdPersonDemo.Locomotion
 
             //SmoothDamp - Gradually changes a vector toward a desired goal over time (in this case - gradually degrade the force to zero)
             _impactVelocity = Vector3.SmoothDamp(_impactVelocity, Vector3.zero, ref _currentForceVelocity, drag);
+            if (navAgent != null && _impactVelocity == Vector3.zero) navAgent.enabled = true;
         }
 
         public void AddForce(Vector3 force)
         {
             _impactVelocity += force;
+            if (navAgent != null) navAgent.enabled = false;
         }
 
         private void HandleGroundedForce()

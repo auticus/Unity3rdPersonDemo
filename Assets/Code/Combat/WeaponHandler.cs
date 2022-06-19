@@ -33,9 +33,10 @@ namespace Unity3rdPersonDemo.Combat
         /// Sets the multiplier for any damage done based on the animation.
         /// </summary>
         /// <param name="damageMultiplier"></param>
-        public void SetAnimationDamageMultiplier(float damageMultiplier)
+        /// <param name="knockbackMultiplier"></param>
+        public void SetAnimationDamageMultiplier(float damageMultiplier, float knockbackMultiplier)
         {
-            weapon.SetDamageMultiplier(damageMultiplier);
+            weapon.SetAnimationMultipliers(damageMultiplier, knockbackMultiplier);
         }
     }
 }

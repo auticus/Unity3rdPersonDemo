@@ -10,6 +10,7 @@ namespace Unity3rdPersonDemo.StateMachine.States
         private readonly int _currentAttackChainIndex;
         private readonly AttackCategories _currentAttackCategory;
         private const int FIRST_ATTACK_INDEX = 0;
+        private const float END_OF_ANIMATION_SEQUENCE = 1f;
         private float _lastAnimationTime;
         private bool _forceApplied;
 
@@ -35,7 +36,9 @@ namespace Unity3rdPersonDemo.StateMachine.States
             _currentAttackChainIndex = attackIndex;
             _currentAttackCategory = attack;
 
-            StateMachine.WeaponHandler.SetAnimationDamageMultiplier(_attackAnimationChain[_currentAttackChainIndex].AttackAttributeMultiplier);
+            StateMachine.WeaponHandler.SetAnimationDamageMultiplier(
+                _attackAnimationChain[_currentAttackChainIndex].DamageAttributeMultiplier,
+                _attackAnimationChain[_currentAttackChainIndex].KnockbackMultiplier);
         }
 
         public void Enter()
@@ -50,7 +53,7 @@ namespace Unity3rdPersonDemo.StateMachine.States
         {
             StateMachine.Locomotion.Process(LocomotionTypes.Attacking, deltaTime);
             var currentAnimationTime = GetCurrentAnimationCompletedTime(StateMachine.Animator);
-            if (currentAnimationTime >= 1f) 
+            if (currentAnimationTime >= END_OF_ANIMATION_SEQUENCE) 
             {
                 //animation has concluded, move back to locomotion state that was passed in
                 SwitchStateToLocomotion();

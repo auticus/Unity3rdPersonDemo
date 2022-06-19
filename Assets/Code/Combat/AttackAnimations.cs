@@ -32,7 +32,8 @@ namespace Unity3rdPersonDemo.Combat
                     comboAttackWindow: 0.0f,
                     forceAppliedTime:0.35f,
                     force: 8f,
-                    attackDamageMultiplier: 1.0f),
+                    damageAttributeMultiplier: 1.0f,
+                    knockbackAttributeMultiplier: 1.0f),
                 AttackAnimation.BuildAnimation(AttackCategories.ThreeSwingBasicOneHandCombo,
                     "Attack1",
                     0,
@@ -40,7 +41,8 @@ namespace Unity3rdPersonDemo.Combat
                     comboAttackWindow: 0.6f,
                     forceAppliedTime:0.35f,
                     force: 8f,
-                    attackDamageMultiplier: 1.0f),
+                    damageAttributeMultiplier: 1.0f,
+                    knockbackAttributeMultiplier: 1.0f),
                 AttackAnimation.BuildAnimation(AttackCategories.ThreeSwingBasicOneHandCombo,
                     "Attack2",
                     1,
@@ -48,7 +50,8 @@ namespace Unity3rdPersonDemo.Combat
                     comboAttackWindow: 0.5f,
                     forceAppliedTime:0.35f,
                     force: 10f,
-                    attackDamageMultiplier: 1.2f),
+                    damageAttributeMultiplier: 1.2f,
+                    knockbackAttributeMultiplier: 1.2f),
                 AttackAnimation.BuildAnimation(AttackCategories.ThreeSwingBasicOneHandCombo,
                     "Attack3",
                     2,
@@ -56,7 +59,8 @@ namespace Unity3rdPersonDemo.Combat
                     comboAttackWindow : 0f,
                     forceAppliedTime:0.35f,
                     force: 12f,
-                    attackDamageMultiplier: 1.5f)
+                    damageAttributeMultiplier: 1.5f,
+                    knockbackAttributeMultiplier : 1.5f)
             };
         }
     }
@@ -90,14 +94,19 @@ namespace Unity3rdPersonDemo.Combat
         public float ForceAppliedTime { get; }
 
         /// <summary>
-        /// The base force value applied by the character when the <see cref="ForceAppliedTime"/> portion of the animation is reached.
+        /// The base force value applied by the attacking character when the <see cref="ForceAppliedTime"/> portion of the animation is reached.
         /// </summary>
         public float Force { get; }
 
         /// <summary>
-        /// Gets the attribute multiplier that the attack animation can have applied to it if it strikes that can be used on damage or force.
+        /// Gets the attribute multiplier that the attack animation can have applied to it if it strikes that can be used on damage.
         /// </summary>
-        public float AttackAttributeMultiplier { get; }
+        public float DamageAttributeMultiplier { get; }
+
+        /// <summary>
+        /// Gets the value that the attack animation can have applied to it for knockback influence.
+        /// </summary>
+        public float KnockbackMultiplier { get; }
 
         private AttackAnimation(
             AttackCategories category, 
@@ -107,7 +116,8 @@ namespace Unity3rdPersonDemo.Combat
             float comboAttackWindow,
             float forceAppliedTime,
             float force,
-            float attackAttributeMultiplier)
+            float damageAttributeMultiplier,
+            float knockbackMultiplier)
         {
             Category = category;
             AnimationName = animationName;
@@ -116,7 +126,8 @@ namespace Unity3rdPersonDemo.Combat
             ComboAttackWindow = comboAttackWindow;
             ForceAppliedTime = forceAppliedTime;
             Force = force;
-            AttackAttributeMultiplier = attackAttributeMultiplier;
+            DamageAttributeMultiplier = damageAttributeMultiplier;
+            KnockbackMultiplier = knockbackMultiplier;
         }
 
         /// <summary>
@@ -127,7 +138,8 @@ namespace Unity3rdPersonDemo.Combat
         /// <param name="comboIndex">The position on the attack chain.</param>
         /// <param name="crossFadeBlend">The amount of blending from one animation to the other.</param>
         /// <param name="comboAttackWindow">What percentage into the attack the next attack can be triggered.</param>
-        /// <param name="attackDamageMultiplier">The multiplier that is applied to the weapon's base damage if struck.</param>
+        /// <param name="damageAttributeMultiplier">The multiplier that is applied to the weapon's base damage if struck.</param>
+        /// <param name="knockbackAttributeMultiplier">The multiplier that is applied to the weapon's base knockback if struck.</param>
         /// <returns></returns>
         public static AttackAnimation BuildAnimation(
             AttackCategories category,
@@ -137,7 +149,17 @@ namespace Unity3rdPersonDemo.Combat
             float comboAttackWindow,
             float forceAppliedTime,
             float force,
-            float attackDamageMultiplier)
-            => new AttackAnimation(category, animationName, comboIndex, crossFadeBlend, comboAttackWindow, forceAppliedTime, force, attackDamageMultiplier);
+            float damageAttributeMultiplier,
+            float knockbackAttributeMultiplier)
+            => new AttackAnimation(
+                category, 
+                animationName, 
+                comboIndex, 
+                crossFadeBlend, 
+                comboAttackWindow, 
+                forceAppliedTime, 
+                force, 
+                damageAttributeMultiplier,
+                knockbackAttributeMultiplier);
     }
 }

@@ -7,6 +7,11 @@ namespace Unity3rdPersonDemo.StateMachine.States
         private const string ATTACK_TAG = "Attack";
         private const int DEFAULT_LAYER = 0;
 
+        /// <summary>
+        /// Will get the progress of the animation sequence that the character is currently engaged in.
+        /// </summary>
+        /// <param name="animator"></param>
+        /// <returns></returns>
         protected float GetCurrentAnimationCompletedTime(Animator animator)
         {
             // which state are we in to which animation if blending?

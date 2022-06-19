@@ -61,6 +61,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   baseDamage: 10
+  baseKnockback: 10
   owningCharacter: {fileID: 0}
 --- !u!54 &3339177730046760442
 Rigidbody:

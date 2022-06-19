@@ -9,6 +9,7 @@ namespace Assets.Code.StateMachine.States.Enemy
     public class EnemyAttackingState : EnemyBaseState
     {
         private const int FIRST_ATTACK_INDEX = 0;
+        private const float END_OF_ANIMATION_SEQUENCE = 1f;
 
         private readonly int _attackHash = Animator.StringToHash("Attack");
         private readonly IList<AttackAnimation> _attackAnimationChain;
@@ -24,7 +25,9 @@ namespace Assets.Code.StateMachine.States.Enemy
             _attackAnimationChain = AttackAnimations.GetAttacksByCategory(attack);
             _currentAttackChainIndex = attackIndex;
             _currentAttackCategory = attack;
-            StateMachine.WeaponHandler.SetAnimationDamageMultiplier(_attackAnimationChain[_currentAttackChainIndex].AttackAttributeMultiplier);
+            StateMachine.WeaponHandler.SetAnimationDamageMultiplier(
+                _attackAnimationChain[_currentAttackChainIndex].DamageAttributeMultiplier,
+                _attackAnimationChain[_currentAttackChainIndex].KnockbackMultiplier);
         }
 
         public override void Enter()
@@ -35,7 +38,7 @@ namespace Assets.Code.StateMachine.States.Enemy
         public override void Tick(float deltaTime)
         {
             var currentAnimationTime = GetCurrentAnimationCompletedTime(StateMachine.Animator);
-            if (currentAnimationTime >= 1f)
+            if (currentAnimationTime >= END_OF_ANIMATION_SEQUENCE)
             {
                 //animation has concluded, move back to locomotion state that was passed in
                 StateMachine.SwitchState(new EnemyPursuitState(StateMachine));
