@@ -9,6 +9,7 @@ namespace Unity3rdPersonDemo.StateMachine.States.Enemy
 
         public override void Enter()
         {
+            StateMachine.NavAgent.enabled = true; //whenever we return to an idle state, make sure nav agent is turned back on if it was turned off
             StateMachine.Animator.CrossFadeInFixedTime(LocomotionBlendTreeHash, ANIMATION_BLEND_TIME);
         }
 

@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Assets.Code.Locomotion.NonPlayer;
 
 namespace Unity3rdPersonDemo.Locomotion.NonPlayer
 {
@@ -14,7 +15,8 @@ namespace Unity3rdPersonDemo.Locomotion.NonPlayer
             _locomotionMap = new Dictionary<LocomotionTypes, ILocomotion>
             {
                 { LocomotionTypes.FreeLook, new NPCDefaultLocomotion(character) },
-                { LocomotionTypes.Pursuit, new NPCPursuitLocomotion(character) }
+                { LocomotionTypes.Pursuit, new NPCPursuitLocomotion(character) },
+                { LocomotionTypes.ImpactResponse, new NPCImpactedLocomotion(character)}
             };
         }
 

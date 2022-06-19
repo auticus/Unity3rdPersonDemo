@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Assets.Code.StateMachine.States.Enemy;
 using Unity3rdPersonDemo.Combat;
 using Unity3rdPersonDemo.Locomotion;
 using Unity3rdPersonDemo.Locomotion.NonPlayer;
@@ -8,7 +9,7 @@ using UnityEngine.AI;
 
 namespace Unity3rdPersonDemo.StateMachine
 {
-    public class EnemyStateMachine : StateMachine, INonPlayerMoveable
+    public class EnemyStateMachine : StateMachine, INonPlayerMoveable, IImpactable
     {
         [field: SerializeField] public Animator Animator { get; private set; }
         [field: SerializeField] public List<AttackCategories> AttackTypes { get; private set; }
@@ -39,6 +40,13 @@ namespace Unity3rdPersonDemo.StateMachine
             //can visually see the range with this
             Gizmos.color = Color.red;
             Gizmos.DrawWireSphere(transform.position, PlayerDetectRange);
+        }
+
+        /// <inheritdoc/>
+        public void PerformImpact()
+        {
+            var defaultImpactDuration = 0.5f;
+            SwitchState(new EnemyImpactState(this, defaultImpactDuration));
         }
     }
 }
