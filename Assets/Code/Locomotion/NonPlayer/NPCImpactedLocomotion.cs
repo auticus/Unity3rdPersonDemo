@@ -1,6 +1,6 @@
 ﻿using Unity3rdPersonDemo.Locomotion.NonPlayer;
 
-namespace Assets.Code.Locomotion.NonPlayer
+namespace Unity3rdPersonDemo.Locomotion.NonPlayer
 {
     public class NPCImpactedLocomotion : NonPlayerLocomotion
     {

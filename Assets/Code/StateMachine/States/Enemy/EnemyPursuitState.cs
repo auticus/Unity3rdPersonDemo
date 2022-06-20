@@ -1,5 +1,4 @@
 ﻿using System.Linq;
-using Assets.Code.StateMachine.States.Enemy;
 using Unity3rdPersonDemo.Locomotion;
 using UnityEngine;
 
@@ -19,12 +18,12 @@ namespace Unity3rdPersonDemo.StateMachine.States.Enemy
         public override void Tick(float deltaTime)
         {
             //todo: apply forces here
-            if (!IsPlayerInRange(StateMachine.PlayerDetectRange))
+            if (!IsPlayerAliveAndInRange(StateMachine.PlayerDetectRange))
             {
                 StateMachine.SwitchState(new EnemyIdleState(StateMachine));
                 return;
             }
-            if (IsPlayerInRange(StateMachine.AttackRange))
+            if (IsPlayerAliveAndInRange(StateMachine.AttackRange))
             {
                 //todo: this will need changed to be able to intelligently cycle through what attacks are available but for now just choosing a single basic
                 var attackCategory = StateMachine.AttackTypes.First();

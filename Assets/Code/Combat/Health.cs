@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 namespace Unity3rdPersonDemo.Combat
 {
@@ -11,6 +12,8 @@ namespace Unity3rdPersonDemo.Combat
         /// The current health of the object.
         /// </summary>
         public int CurrentHealth => _health;
+
+        public event Action OnDeath;
 
         private void Start()
         {
@@ -25,7 +28,12 @@ namespace Unity3rdPersonDemo.Combat
         {
             if (_health == 0) return;
             _health -= damage;
-            if (_health < 0) _health = 0;
+            
+            if (_health <= 0)
+            {
+                _health = 0;
+                OnDeath?.Invoke();
+            }
 
             Debug.Log($"Target is damaged and has {_health} remaining");
         }

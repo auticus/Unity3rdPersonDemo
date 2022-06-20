@@ -11,7 +11,7 @@ namespace Unity3rdPersonDemo.StateMachine
     /// <summary>
     /// Primary controller of the Player.
     /// </summary>
-    public class PlayerStateMachine : StateMachine, IPlayerMoveable, IImpactable
+    public class PlayerStateMachine : StateMachine, IPlayerMoveable, IImpactable, IPlayerStatus
     {
         //todo: the name of this class is a bit misleading as it is a type of State StateMachine but is also controlling movement etc.
         //its more a player controller.
@@ -20,6 +20,7 @@ namespace Unity3rdPersonDemo.StateMachine
         [field: SerializeField] public InputReader InputReader { get; private set; }
         [field: SerializeField] public Animator Animator { get; private set; }
         [field: SerializeField] public CharacterController CharacterController { get; private set; }
+        [field: SerializeField] public bool Dead { get; private set; }
         [field: SerializeField] public float DefaultMovementSpeed { get; private set; }
         [field: SerializeField] public float TargetingMovementSpeed { get; private set; }
         [field: SerializeField] public float RotationDamping { get; private set; }
@@ -29,18 +30,30 @@ namespace Unity3rdPersonDemo.StateMachine
         public Transform MainCameraTransform { get; private set; }
         public PlayerControlledLocomotion Locomotion { get; private set; }
 
+        private Health _health { get; set; }
+
         private void Start()
         {
             MainCameraTransform = Camera.main.transform;
             SwitchState(new PlayerFreeLookState(this));
             Locomotion = new PlayerControlledLocomotion(this);
+
+            _health = GetComponent<Health>();
+            _health.OnDeath += OnPlayerDeath;
         }
 
         /// <inheritdoc/>
         public void PerformImpact()
         {
-            var defaultImpactDuration = 0.5f;
+            if (Dead) return;
+            var defaultImpactDuration = 0.5f; //todo: weapon types and strength can affect impact
             SwitchState(new PlayerImpactState(this, defaultImpactDuration));
+        }
+
+        private void OnPlayerDeath()
+        {
+            Dead = true;
+            SwitchState(new PlayerDeathState(this));
         }
     }
 }

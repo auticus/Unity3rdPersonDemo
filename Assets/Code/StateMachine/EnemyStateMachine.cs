@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using Assets.Code.StateMachine.States.Enemy;
 using Unity3rdPersonDemo.Combat;
 using Unity3rdPersonDemo.Locomotion;
 using Unity3rdPersonDemo.Locomotion.NonPlayer;
@@ -25,6 +24,9 @@ namespace Unity3rdPersonDemo.StateMachine
         public GameObject Player { get; private set; }
         public NPCControlledLocomotion Locomotion { get; private set; }
 
+        private Health _health;
+        private bool _isDead = false;
+
         private void Start()
         {
             Player = GameObject.FindGameObjectWithTag("Player");
@@ -32,6 +34,8 @@ namespace Unity3rdPersonDemo.StateMachine
             NavAgent.updateRotation = false; //do not move our models for us!
 
             Locomotion = new NPCControlledLocomotion(this);
+            _health = GetComponent<Health>();
+            _health.OnDeath += OnDeath;
             SwitchState(new EnemyIdleState(this));
         }
 
@@ -45,8 +49,15 @@ namespace Unity3rdPersonDemo.StateMachine
         /// <inheritdoc/>
         public void PerformImpact()
         {
+            if (_isDead) return;
             var defaultImpactDuration = 0.5f;
             SwitchState(new EnemyImpactState(this, defaultImpactDuration));
+        }
+
+        private void OnDeath()
+        {
+            _isDead = true;
+            SwitchState(new EnemyDeadState(this));
         }
     }
 }

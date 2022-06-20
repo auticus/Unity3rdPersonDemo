@@ -1,9 +1,7 @@
 ﻿using Unity3rdPersonDemo.Locomotion;
-using Unity3rdPersonDemo.StateMachine;
-using Unity3rdPersonDemo.StateMachine.States.Enemy;
 using UnityEngine;
 
-namespace Assets.Code.StateMachine.States.Enemy
+namespace Unity3rdPersonDemo.StateMachine.States.Enemy
 {
     public class EnemyImpactState : EnemyBaseState
     {

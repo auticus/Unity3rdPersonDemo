@@ -31,7 +31,7 @@ namespace Unity3rdPersonDemo.Combat
                     crossFadeBlend: 0.1f,
                     comboAttackWindow: 0.0f,
                     forceAppliedTime:0.35f,
-                    force: 8f,
+                    force: 5f,
                     damageAttributeMultiplier: 1.0f,
                     knockbackAttributeMultiplier: 1.0f),
                 AttackAnimation.BuildAnimation(AttackCategories.ThreeSwingBasicOneHandCombo,
@@ -40,7 +40,7 @@ namespace Unity3rdPersonDemo.Combat
                     crossFadeBlend: 0.1f,
                     comboAttackWindow: 0.6f,
                     forceAppliedTime:0.35f,
-                    force: 8f,
+                    force: 5f,
                     damageAttributeMultiplier: 1.0f,
                     knockbackAttributeMultiplier: 1.0f),
                 AttackAnimation.BuildAnimation(AttackCategories.ThreeSwingBasicOneHandCombo,
@@ -58,7 +58,7 @@ namespace Unity3rdPersonDemo.Combat
                     crossFadeBlend: 0.1f,
                     comboAttackWindow : 0f,
                     forceAppliedTime:0.35f,
-                    force: 12f,
+                    force: 15f,
                     damageAttributeMultiplier: 1.5f,
                     knockbackAttributeMultiplier : 1.5f)
             };

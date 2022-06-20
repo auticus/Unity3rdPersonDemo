@@ -15,7 +15,7 @@ namespace Unity3rdPersonDemo.StateMachine.States.Enemy
         public override void Tick(float deltaTime)
         {
             //todo: apply forces here
-            if (IsPlayerInRange(StateMachine.PlayerDetectRange))
+            if (IsPlayerAliveAndInRange(StateMachine.PlayerDetectRange))
             {
                 StateMachine.SwitchState(new EnemyPursuitState(StateMachine));
                 return;

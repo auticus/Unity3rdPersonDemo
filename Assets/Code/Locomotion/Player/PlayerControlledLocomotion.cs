@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using Assets.Code.Locomotion.Player;
 
 namespace Unity3rdPersonDemo.Locomotion.Player
 {

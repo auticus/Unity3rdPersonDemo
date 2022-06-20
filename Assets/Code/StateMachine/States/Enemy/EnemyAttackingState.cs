@@ -1,10 +1,8 @@
 ﻿using System.Collections.Generic;
 using Unity3rdPersonDemo.Combat;
-using Unity3rdPersonDemo.StateMachine;
-using Unity3rdPersonDemo.StateMachine.States.Enemy;
 using UnityEngine;
 
-namespace Assets.Code.StateMachine.States.Enemy
+namespace Unity3rdPersonDemo.StateMachine.States.Enemy
 {
     public class EnemyAttackingState : EnemyBaseState
     {

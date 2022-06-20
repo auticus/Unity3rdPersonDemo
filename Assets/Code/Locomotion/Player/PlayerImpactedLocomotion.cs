@@ -1,6 +1,4 @@
-﻿using Unity3rdPersonDemo.Locomotion.Player;
-
-namespace Assets.Code.Locomotion.Player
+﻿namespace Unity3rdPersonDemo.Locomotion.Player
 {
     public class PlayerImpactedLocomotion : PlayerLocomotion
     {
