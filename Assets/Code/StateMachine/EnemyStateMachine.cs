@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Unity3rdPersonDemo.Combat;
+using Unity3rdPersonDemo.Combat.Targeting;
 using Unity3rdPersonDemo.Locomotion;
 using Unity3rdPersonDemo.Locomotion.NonPlayer;
 using Unity3rdPersonDemo.StateMachine.States.Enemy;
@@ -10,6 +11,7 @@ namespace Unity3rdPersonDemo.StateMachine
 {
     public class EnemyStateMachine : StateMachine, INonPlayerMoveable, IImpactable
     {
+        //todo: clean this up.  Public properties not being used outside do not need to be on the designer, esp if not tuning them.
         [field: SerializeField] public Animator Animator { get; private set; }
         [field: SerializeField] public List<AttackCategories> AttackTypes { get; private set; }
         [field: SerializeField] public CharacterController CharacterController { get; private set; }
@@ -25,6 +27,7 @@ namespace Unity3rdPersonDemo.StateMachine
         public NPCControlledLocomotion Locomotion { get; private set; }
 
         private Health _health;
+        private Target _target;
         private bool _isDead = false;
 
         private void Start()
@@ -36,6 +39,8 @@ namespace Unity3rdPersonDemo.StateMachine
             Locomotion = new NPCControlledLocomotion(this);
             _health = GetComponent<Health>();
             _health.OnDeath += OnDeath;
+            _target = GetComponent<Target>();
+
             SwitchState(new EnemyIdleState(this));
         }
 
@@ -58,6 +63,7 @@ namespace Unity3rdPersonDemo.StateMachine
         {
             _isDead = true;
             WeaponHandler.gameObject.SetActive(false);
+            GameObject.Destroy(_target); //simply disabling it does not clear the player from targeting it if its targeted, causing weirdness
             SwitchState(new EnemyDeadState(this));
         }
     }

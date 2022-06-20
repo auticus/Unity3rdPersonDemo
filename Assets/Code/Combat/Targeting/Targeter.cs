@@ -27,6 +27,7 @@ namespace Unity3rdPersonDemo.Combat.Targeting
         {
             if (other.TryGetComponent(out Target target))
             {
+                // the enemy state machine will Destroy the target object on death, firing off the method below.
                 target.OnDestroyed += RemoveTarget;
                 _targets.Add(target);
             }
