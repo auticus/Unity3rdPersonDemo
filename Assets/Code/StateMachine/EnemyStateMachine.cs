@@ -57,6 +57,7 @@ namespace Unity3rdPersonDemo.StateMachine
         private void OnDeath()
         {
             _isDead = true;
+            WeaponHandler.gameObject.SetActive(false);
             SwitchState(new EnemyDeadState(this));
         }
     }

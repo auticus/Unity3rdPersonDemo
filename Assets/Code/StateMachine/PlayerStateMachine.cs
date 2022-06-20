@@ -53,6 +53,7 @@ namespace Unity3rdPersonDemo.StateMachine
         private void OnPlayerDeath()
         {
             Dead = true;
+            WeaponHandler.gameObject.SetActive(false);
             SwitchState(new PlayerDeathState(this));
         }
     }
