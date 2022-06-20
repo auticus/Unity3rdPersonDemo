@@ -39,13 +39,10 @@ namespace Unity3rdPersonDemo.Combat
             if (forceReceiver != null)
             {
                 var knockBackDirection = (other.transform.position - owningCharacter.transform.position).normalized;
-                forceReceiver.AddForce(knockBackDirection * baseKnockback * _characterAnimationKnockbackMultiplier);
+                forceReceiver.AddForce(baseKnockback * _characterAnimationKnockbackMultiplier * knockBackDirection);
             }
 
-            if (impactReceiver != null)
-            {
-                impactReceiver.PerformImpact();
-            }
+            impactReceiver?.PerformImpact();
         }
 
         /// <summary>

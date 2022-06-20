@@ -23,12 +23,17 @@ namespace Unity3rdPersonDemo.Locomotion
 
         private void Update()
         {
+            var impactFinalizedThreshold = 0.2f * 0.2f;
+
             if (controller.isGrounded) HandleGroundedForce();
             else HandleInTheAirForce();
 
             //SmoothDamp - Gradually changes a vector toward a desired goal over time (in this case - gradually degrade the force to zero)
             _impactVelocity = Vector3.SmoothDamp(_impactVelocity, Vector3.zero, ref _currentForceVelocity, drag);
-            if (navAgent != null && _impactVelocity == Vector3.zero) navAgent.enabled = true;
+            if (navAgent != null && _impactVelocity.sqrMagnitude < impactFinalizedThreshold)
+            {
+                navAgent.enabled = true;
+            }
         }
 
         public void AddForce(Vector3 force)
