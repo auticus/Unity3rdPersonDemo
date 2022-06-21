@@ -31,6 +31,7 @@ namespace Unity3rdPersonDemo.StateMachine
         public PlayerControlledLocomotion Locomotion { get; private set; }
 
         private Health _health { get; set; }
+        private Ragdoll _ragdoll { get; set; }
 
         private void Start()
         {
@@ -40,6 +41,8 @@ namespace Unity3rdPersonDemo.StateMachine
 
             _health = GetComponent<Health>();
             _health.OnDeath += OnPlayerDeath;
+
+            _ragdoll = GetComponent<Ragdoll>();
         }
 
         /// <inheritdoc/>
@@ -53,7 +56,8 @@ namespace Unity3rdPersonDemo.StateMachine
         private void OnPlayerDeath()
         {
             Dead = true;
-            WeaponHandler.gameObject.SetActive(false);
+            WeaponHandler.enabled = false;
+            _ragdoll.ToggleRagdoll(true);
             SwitchState(new PlayerDeathState(this));
         }
     }

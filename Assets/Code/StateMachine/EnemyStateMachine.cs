@@ -28,6 +28,7 @@ namespace Unity3rdPersonDemo.StateMachine
 
         private Health _health;
         private Target _target;
+        private Ragdoll _ragdoll;
         private bool _isDead = false;
 
         private void Start()
@@ -40,6 +41,7 @@ namespace Unity3rdPersonDemo.StateMachine
             _health = GetComponent<Health>();
             _health.OnDeath += OnDeath;
             _target = GetComponent<Target>();
+            _ragdoll = GetComponent<Ragdoll>();
 
             SwitchState(new EnemyIdleState(this));
         }
@@ -62,7 +64,8 @@ namespace Unity3rdPersonDemo.StateMachine
         private void OnDeath()
         {
             _isDead = true;
-            WeaponHandler.gameObject.SetActive(false);
+            WeaponHandler.enabled = false;
+            _ragdoll.ToggleRagdoll(true);
             GameObject.Destroy(_target); //simply disabling it does not clear the player from targeting it if its targeted, causing weirdness
             SwitchState(new EnemyDeadState(this));
         }

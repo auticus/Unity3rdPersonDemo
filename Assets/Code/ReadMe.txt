@@ -281,3 +281,23 @@ Agent will calculate where we should move but we will actually move them so we c
 ADDING WEAPON LOGIC TO ENEMY
 One thing different, he's got a rigid body on the sword collider game object.  Apparently both objects need that to detect collisions?
 I have since corrected this and added rigid body  kinematics to the weapon colliders as well.
+
+
+RAGDOLLING
+1) find your player object
+>> right click the object >> 3D Object >> Ragdoll
+The Ragdoll wizard comes up.  Assign the bones to the slots as needed in the prefab.
+
+At this point after Create -> the ragdoll will be active and needs turned off until the player dies.
+
+Edit >> Settings >> Tags and Layers >> Create a Player and Ragdoll layer
+Edit >> Settings >> Physics >> Change the layers so that we know which layers collide with which layers
+>>>> Default collides with ragdoll, player, default
+>>>> Ragdoll collides with Ragdoll
+
+Now in prefab
+Go at top and get all rigid bodies.  Assign all the player body parts to layer Ragdoll.  Assign all the player body parts to TAG Ragdoll as well.
+(note just the object not all the children)
+assign Player gameobject (just that object) to Player layer.
+
+Ragdoll.cs was created to enable and disable these.  These are then referenced in the state machines and can be toggled via the dead states.
