@@ -301,3 +301,4 @@ Go at top and get all rigid bodies.  Assign all the player body parts to layer R
 assign Player gameobject (just that object) to Player layer.
 
 Ragdoll.cs was created to enable and disable these.  These are then referenced in the state machines and can be toggled via the dead states.
+Note: if you ragdoll wizard multiple times and not just once you're going to have a bad time.

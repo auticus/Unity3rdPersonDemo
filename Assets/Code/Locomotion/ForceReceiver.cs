@@ -32,6 +32,7 @@ namespace Unity3rdPersonDemo.Locomotion
             _impactVelocity = Vector3.SmoothDamp(_impactVelocity, Vector3.zero, ref _currentForceVelocity, drag);
             if (navAgent != null && _impactVelocity.sqrMagnitude < impactFinalizedThreshold)
             {
+                //note: this can cause a possible race condition with other states trying to work with the nav agent
                 navAgent.enabled = true;
             }
         }

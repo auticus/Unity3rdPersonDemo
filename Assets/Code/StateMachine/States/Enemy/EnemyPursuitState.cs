@@ -36,7 +36,13 @@ namespace Unity3rdPersonDemo.StateMachine.States.Enemy
 
         public override void Exit()
         {
-            StateMachine.NavAgent.ResetPath(); //stop trying to pursue when we exit!
+            //note the below could cause issues - the states can be in a race condition where force does not turn the nav agent on before the exit condition
+            //so only resetting a path as needed (the demo does not check if enabled, it just always does it)
+            if (StateMachine.NavAgent.enabled)
+            {
+                StateMachine.NavAgent.ResetPath(); //stop trying to pursue when we exit!
+            }
+            
             StateMachine.NavAgent.velocity = Vector3.zero;
         }
     }
