@@ -6,6 +6,7 @@
         Targeting,
         Attacking,
         Pursuit,
+        FaceTarget,
         NoExternalMovement
     }
 }

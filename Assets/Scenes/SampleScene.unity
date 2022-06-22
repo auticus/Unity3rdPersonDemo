@@ -1776,7 +1776,17 @@ PrefabInstance:
     - target: {fileID: 978406644919413348, guid: f4aa2aa78c1e89d459ecd19aefc17507,
         type: 3}
       propertyPath: m_Lens.m_SensorSize.x
-      value: 1.5475862
+      value: 1.8025079
+      objectReference: {fileID: 0}
+    - target: {fileID: 978406644919413348, guid: f4aa2aa78c1e89d459ecd19aefc17507,
+        type: 3}
+      propertyPath: m_Transitions.m_BlendHint
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 978406644919413348, guid: f4aa2aa78c1e89d459ecd19aefc17507,
+        type: 3}
+      propertyPath: m_Transitions.m_InheritPosition
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 991270699416533808, guid: f4aa2aa78c1e89d459ecd19aefc17507,
         type: 3}
@@ -1792,6 +1802,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: -4.238376
+      objectReference: {fileID: 0}
+    - target: {fileID: 1026105276334215511, guid: f4aa2aa78c1e89d459ecd19aefc17507,
+        type: 3}
+      propertyPath: m_XDamping
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1026105276334215511, guid: f4aa2aa78c1e89d459ecd19aefc17507,
+        type: 3}
+      propertyPath: m_YDamping
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1026105276334215511, guid: f4aa2aa78c1e89d459ecd19aefc17507,
+        type: 3}
+      propertyPath: m_ZDamping
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1063548533543228523, guid: f4aa2aa78c1e89d459ecd19aefc17507,
         type: 3}
@@ -2053,6 +2078,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -68.342476
       objectReference: {fileID: 0}
+    - target: {fileID: 3381599282564547593, guid: f4aa2aa78c1e89d459ecd19aefc17507,
+        type: 3}
+      propertyPath: m_VerticalDamping
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3381599282564547593, guid: f4aa2aa78c1e89d459ecd19aefc17507,
+        type: 3}
+      propertyPath: m_HorizontalDamping
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3838596015807984689, guid: f4aa2aa78c1e89d459ecd19aefc17507,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -2215,8 +2250,43 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5007298380042893140, guid: f4aa2aa78c1e89d459ecd19aefc17507,
         type: 3}
+      propertyPath: m_DefaultBlend.m_Time
+      value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 5007298380042893140, guid: f4aa2aa78c1e89d459ecd19aefc17507,
+        type: 3}
+      propertyPath: m_DefaultBlend.m_Style
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5007298380042893140, guid: f4aa2aa78c1e89d459ecd19aefc17507,
+        type: 3}
+      propertyPath: m_ParentHash.Array.size
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 5007298380042893140, guid: f4aa2aa78c1e89d459ecd19aefc17507,
+        type: 3}
       propertyPath: m_ChildCameras.Array.size
-      value: 0
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5007298380042893140, guid: f4aa2aa78c1e89d459ecd19aefc17507,
+        type: 3}
+      propertyPath: m_ParentHash.Array.data[11].m_Hash
+      value: 1344688058
+      objectReference: {fileID: 0}
+    - target: {fileID: 5007298380042893140, guid: f4aa2aa78c1e89d459ecd19aefc17507,
+        type: 3}
+      propertyPath: m_ParentHash.Array.data[12].m_Hash
+      value: 1016297486
+      objectReference: {fileID: 0}
+    - target: {fileID: 5007298380042893140, guid: f4aa2aa78c1e89d459ecd19aefc17507,
+        type: 3}
+      propertyPath: m_ParentHash.Array.data[11].m_ParentHash
+      value: 756556552
+      objectReference: {fileID: 0}
+    - target: {fileID: 5007298380042893140, guid: f4aa2aa78c1e89d459ecd19aefc17507,
+        type: 3}
+      propertyPath: m_ParentHash.Array.data[12].m_ParentHash
+      value: 756556552
       objectReference: {fileID: 0}
     - target: {fileID: 5032020540091053880, guid: f4aa2aa78c1e89d459ecd19aefc17507,
         type: 3}
@@ -2541,7 +2611,7 @@ PrefabInstance:
     - target: {fileID: 7622491480374446678, guid: f4aa2aa78c1e89d459ecd19aefc17507,
         type: 3}
       propertyPath: m_Lens.m_SensorSize.x
-      value: 1.5475862
+      value: 1.8025079
       objectReference: {fileID: 0}
     - target: {fileID: 7622491480374446679, guid: f4aa2aa78c1e89d459ecd19aefc17507,
         type: 3}
@@ -2601,7 +2671,17 @@ PrefabInstance:
     - target: {fileID: 7622491480674074020, guid: f4aa2aa78c1e89d459ecd19aefc17507,
         type: 3}
       propertyPath: m_Lens.m_SensorSize.x
-      value: 1.5475862
+      value: 1.8025079
+      objectReference: {fileID: 0}
+    - target: {fileID: 7622491480674074020, guid: f4aa2aa78c1e89d459ecd19aefc17507,
+        type: 3}
+      propertyPath: m_Transitions.m_BlendHint
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7622491480674074020, guid: f4aa2aa78c1e89d459ecd19aefc17507,
+        type: 3}
+      propertyPath: m_Transitions.m_InheritPosition
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7622491480674074020, guid: f4aa2aa78c1e89d459ecd19aefc17507,
         type: 3}
@@ -2626,7 +2706,7 @@ PrefabInstance:
     - target: {fileID: 7622491480717243939, guid: f4aa2aa78c1e89d459ecd19aefc17507,
         type: 3}
       propertyPath: m_Lens.m_SensorSize.x
-      value: 1.5475862
+      value: 1.8025079
       objectReference: {fileID: 0}
     - target: {fileID: 7622491480717243940, guid: f4aa2aa78c1e89d459ecd19aefc17507,
         type: 3}
@@ -2646,27 +2726,27 @@ PrefabInstance:
     - target: {fileID: 7622491480717243940, guid: f4aa2aa78c1e89d459ecd19aefc17507,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: -0.99902475
+      value: -0.9990248
       objectReference: {fileID: 0}
     - target: {fileID: 7622491480717243940, guid: f4aa2aa78c1e89d459ecd19aefc17507,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.044153195
+      value: -0.044153206
       objectReference: {fileID: 0}
     - target: {fileID: 7622491480717243940, guid: f4aa2aa78c1e89d459ecd19aefc17507,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.0000055581327
+      value: 0.0000055730347
       objectReference: {fileID: 0}
     - target: {fileID: 7622491480717243940, guid: f4aa2aa78c1e89d459ecd19aefc17507,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.0000002449378
+      value: -0.0000002468005
       objectReference: {fileID: 0}
     - target: {fileID: 7622491481233417294, guid: f4aa2aa78c1e89d459ecd19aefc17507,
         type: 3}
       propertyPath: m_Lens.m_SensorSize.x
-      value: 1.5475862
+      value: 1.8025079
       objectReference: {fileID: 0}
     - target: {fileID: 7622491481233417295, guid: f4aa2aa78c1e89d459ecd19aefc17507,
         type: 3}

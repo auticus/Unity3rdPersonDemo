@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Unity3rdPersonDemo.Combat;
+using Unity3rdPersonDemo.Locomotion;
 using UnityEngine;
 
 namespace Unity3rdPersonDemo.StateMachine.States.Enemy
@@ -42,6 +43,8 @@ namespace Unity3rdPersonDemo.StateMachine.States.Enemy
                 StateMachine.SwitchState(new EnemyPursuitState(StateMachine));
                 return;
             }
+
+            StateMachine.Locomotion.Process(LocomotionTypes.FaceTarget, deltaTime);
         }
     }
 }

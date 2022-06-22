@@ -302,3 +302,23 @@ assign Player gameobject (just that object) to Player layer.
 
 Ragdoll.cs was created to enable and disable these.  These are then referenced in the state machines and can be toggled via the dead states.
 Note: if you ragdoll wizard multiple times and not just once you're going to have a bad time.
+
+COMBAT STATE POLISHING
+======================
+Targeting Camera -> very loose.  Goes into the Targeting Camera >> Aim >> Horizontal Damping and sets it from 0.5 to 0 to tighten it up and vertical from 0.5 to 0.1.
+That damping will always rotate to face player so will never lag behind.
+
+Next under Body >> X Y and Z Damping he changes them all from 1 to 0 as well to stop the smooth transition and try to lock the camera behind the player.
+This keeps player in center of the screen and tight.
+
+Free Look Camera -> does this insane spin / zoom thing when you switch targeting state or several other things can cause it.  It snaps around and sucks.
+Also we don't want to target enemies behind and if you spin camera behind your character, you're facing away but the character is not... so its letting
+you target stuff the character sees even though you the player do not see it.
+
+Free Look Camera >> Transitions >> Inherit Position (check it on) so it will start where target camera is instead of snapping.  Blend Hint - Cylindrical position 
+(play with it)
+
+Targeting Camera >> Transitions - Inherit Postion checked >> and blend hint (set it to what you want)
+
+Cinematic State Driven Camera >> Default Blend = ease In  and duration was 0.25 (0.5 default, this is how snappy it works)
+

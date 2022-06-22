@@ -59,8 +59,14 @@ namespace Unity3rdPersonDemo.Combat.Targeting
             {
                 //make sure x and y are between 0 & 1.  z doesn't matter because the range sphere on the player controller will keep things in a sane range
                 var targetViewPosition = _mainCamera.WorldToViewportPoint(target.transform.position);
+                /* the old way - the problem with this is if the camera is facing away but the character facing the target, it will target
+                 * we want it to not be able to target things that we the player cannot see
                 if (targetViewPosition.x is < 0 or > 1) continue;
                 if (targetViewPosition.y is < 0 or > 1) continue;
+                */
+
+                //the alternative is to get a renderer on the target and if any is visible, thats fine
+                if (!target.GetComponentInChildren<Renderer>().isVisible) continue;
 
                 var distanceFromCenter = GetDistanceFromCenterScreen(targetViewPosition);
                 if (distanceFromCenter.sqrMagnitude < bestTargetPosition)

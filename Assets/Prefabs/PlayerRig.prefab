@@ -77,11 +77,6 @@ PrefabInstance:
       propertyPath: m_Follow
       value: 
       objectReference: {fileID: 3036013091495944013}
-    - target: {fileID: 454876810292861033, guid: ceb7b35912ff8fe42840d4fcbcdd2336,
-        type: 3}
-      propertyPath: m_Lens.m_SensorSize.x
-      value: 2.243615
-      objectReference: {fileID: 0}
     - target: {fileID: 1970837166187626417, guid: ceb7b35912ff8fe42840d4fcbcdd2336,
         type: 3}
       propertyPath: m_LocalPosition.x

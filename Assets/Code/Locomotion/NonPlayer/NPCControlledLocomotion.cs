@@ -15,7 +15,8 @@ namespace Unity3rdPersonDemo.Locomotion.NonPlayer
             {
                 { LocomotionTypes.FreeLook, new NPCDefaultLocomotion(character) },
                 { LocomotionTypes.Pursuit, new NPCPursuitLocomotion(character) },
-                { LocomotionTypes.NoExternalMovement, new NPCImpactedLocomotion(character)}
+                { LocomotionTypes.NoExternalMovement, new NPCImpactedLocomotion(character)},
+                { LocomotionTypes.FaceTarget, new NPCFaceTargetLocomotion(character)}
             };
         }
 
