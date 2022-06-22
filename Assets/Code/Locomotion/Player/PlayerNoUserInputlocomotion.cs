@@ -1,8 +1,8 @@
 ﻿namespace Unity3rdPersonDemo.Locomotion.Player
 {
-    public class PlayerImpactedLocomotion : PlayerLocomotion
+    public class PlayerNoUserInputLocomotion : PlayerLocomotion
     {
-        public PlayerImpactedLocomotion(IPlayerMoveable character) : base(character)
+        public PlayerNoUserInputLocomotion(IPlayerMoveable character) : base(character)
         { }
 
         public override void Process(float deltaTime)

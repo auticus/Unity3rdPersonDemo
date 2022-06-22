@@ -6,18 +6,22 @@ namespace Unity3rdPersonDemo.Combat
     public class Health : MonoBehaviour
     {
         [SerializeField] private int maxHealth;
-        private int _health;
+        
+        /// <summary>
+        /// Gets the current health of the object.
+        /// </summary>
+        public int CurrentHealth { get; private set; }
 
         /// <summary>
-        /// The current health of the object.
+        /// Gets or sets a percentage that indicates how much damage can be blocked.
         /// </summary>
-        public int CurrentHealth => _health;
+        public float BlockPercentage { get; set; }
 
         public event Action OnDeath;
 
         private void Start()
         {
-            _health = maxHealth;
+            CurrentHealth = maxHealth;
         }
 
         /// <summary>
@@ -26,16 +30,25 @@ namespace Unity3rdPersonDemo.Combat
         /// <param name="damage">The amount of damage to apply.</param>
         public void DamageHealth(int damage)
         {
-            if (_health == 0) return;
-            _health -= damage;
-            
-            if (_health <= 0)
+            if (CurrentHealth == 0) return;
+
+            if (BlockPercentage > 0)
             {
-                _health = 0;
+                damage = GetUnblockedDamage(damage);
+            }
+
+            CurrentHealth -= damage;
+            
+            if (CurrentHealth <= 0)
+            {
+                CurrentHealth = 0;
                 OnDeath?.Invoke();
             }
 
-            Debug.Log($"Target is damaged and has {_health} remaining");
+            Debug.Log($"Target is damaged and has {CurrentHealth} remaining");
         }
+
+        private int GetUnblockedDamage(int damage)
+            => damage - Mathf.CeilToInt(damage * BlockPercentage);
     }
 }

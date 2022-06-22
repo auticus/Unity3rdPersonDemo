@@ -19,6 +19,7 @@ namespace Unity3rdPersonDemo.StateMachine.States
         {
             StateMachine.InputReader.OnTargetingClicked += InputReaderOnTargetingClicked;
             StateMachine.InputReader.OnAttackClicked += InputReaderOnAttackClicked;
+            StateMachine.InputReader.OnBlockClicked += InputReaderOnBlockClicked;
             StateMachine.Animator.CrossFadeInFixedTime(FreeLookCameraBlendTreeHash, ANIMATION_BLEND_TIME);
         }
 
@@ -31,6 +32,7 @@ namespace Unity3rdPersonDemo.StateMachine.States
         {
             StateMachine.InputReader.OnTargetingClicked -= InputReaderOnTargetingClicked;
             StateMachine.InputReader.OnAttackClicked -= InputReaderOnAttackClicked;
+            StateMachine.InputReader.OnBlockClicked -= InputReaderOnBlockClicked;
         }
 
         private void InputReaderOnTargetingClicked()
@@ -42,6 +44,11 @@ namespace Unity3rdPersonDemo.StateMachine.States
         private void InputReaderOnAttackClicked(AttackCategories attack)
         {
             StateMachine.SwitchState(new PlayerAttackingState(StateMachine, attack));
+        }
+
+        private void InputReaderOnBlockClicked()
+        {
+            StateMachine.SwitchState(new PlayerBlockingState(StateMachine));
         }
     }
 }

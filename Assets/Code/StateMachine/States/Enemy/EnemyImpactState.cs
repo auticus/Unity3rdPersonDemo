@@ -22,7 +22,7 @@ namespace Unity3rdPersonDemo.StateMachine.States.Enemy
 
         public override void Tick(float deltaTime)
         {
-            StateMachine.Locomotion.Process(LocomotionTypes.ImpactResponse, deltaTime);
+            StateMachine.Locomotion.Process(LocomotionTypes.NoExternalMovement, deltaTime);
             _duration -= deltaTime;
             if (_duration <= 0)
             {

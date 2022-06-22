@@ -13,7 +13,7 @@ namespace Unity3rdPersonDemo.Locomotion.Player
                 { LocomotionTypes.FreeLook, new PlayerFreeLookLocomotion(character) },
                 { LocomotionTypes.Targeting, new PlayerTargetingLocomotion(character) },
                 { LocomotionTypes.Attacking, new PlayerAttackingLocomotion(character) },
-                { LocomotionTypes.ImpactResponse, new PlayerImpactedLocomotion(character)}
+                { LocomotionTypes.NoExternalMovement, new PlayerNoUserInputLocomotion(character)}
             };
         }
 

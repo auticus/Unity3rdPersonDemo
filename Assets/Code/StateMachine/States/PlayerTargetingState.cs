@@ -20,6 +20,7 @@ namespace Unity3rdPersonDemo.StateMachine.States
         {
             StateMachine.InputReader.OnTargetingClicked += InputReaderOnTargetingClicked;
             StateMachine.InputReader.OnAttackClicked += InputReaderOnAttackClicked;
+            StateMachine.InputReader.OnBlockClicked += InputReaderOnBlockClicked;
             StateMachine.Animator.CrossFadeInFixedTime(TargetingCameraBlendTreeHash, ANIMATION_BLEND_TIME);
         }
         
@@ -38,10 +39,10 @@ namespace Unity3rdPersonDemo.StateMachine.States
         {
             StateMachine.InputReader.OnTargetingClicked -= InputReaderOnTargetingClicked;
             StateMachine.InputReader.OnAttackClicked -= InputReaderOnAttackClicked;
+            StateMachine.InputReader.OnBlockClicked -= InputReaderOnBlockClicked;
             if (!_doNotClearTargetOnExit)
             {
                 StateMachine.ObjectTargeter.ClearTarget();
-                Debug.Log("Cleared Target");
             }
         }
 
@@ -55,6 +56,12 @@ namespace Unity3rdPersonDemo.StateMachine.States
         {
             _doNotClearTargetOnExit = true;
             StateMachine.SwitchState(new PlayerAttackingState(StateMachine, attack));
+        }
+
+        private void InputReaderOnBlockClicked()
+        {
+            _doNotClearTargetOnExit = true;
+            StateMachine.SwitchState(new PlayerBlockingState(StateMachine));
         }
     }
 }

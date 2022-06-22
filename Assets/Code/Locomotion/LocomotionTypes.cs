@@ -6,6 +6,6 @@
         Targeting,
         Attacking,
         Pursuit,
-        ImpactResponse
+        NoExternalMovement
     }
 }

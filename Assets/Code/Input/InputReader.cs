@@ -8,10 +8,12 @@ namespace Unity3rdPersonDemo.Input
     public class InputReader : MonoBehaviour, Controls.IPlayerActions
     {
         public Vector2 MovementValue { get; private set; }
+        public bool IsBlockPressed { get; private set; }
 
         public event Action OnInputJump;
         public event Action OnInputDodge;
         public event Action OnTargetingClicked;
+        public event Action OnBlockClicked;
         public event Action<AttackCategories> OnAttackClicked;
 
         private Controls _controls;
@@ -62,6 +64,20 @@ namespace Unity3rdPersonDemo.Input
         {
             if (!context.performed) return;
             OnAttackClicked?.Invoke(AttackCategories.ThreeSwingBasicOneHandCombo);
+        }
+
+        public void OnBlock(InputAction.CallbackContext context)
+        {
+            if (context.performed)
+            {
+                OnBlockClicked?.Invoke();
+                IsBlockPressed = true;
+            }
+
+            if (context.canceled)
+            {
+                IsBlockPressed = false;
+            }
         }
     }
 }
