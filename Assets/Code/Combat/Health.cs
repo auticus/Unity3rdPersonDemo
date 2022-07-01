@@ -11,7 +11,7 @@ namespace Unity3rdPersonDemo.Combat
         /// Gets the current health of the object.
         /// </summary>
         public int CurrentHealth { get; private set; }
-
+        
         /// <summary>
         /// Gets or sets a percentage that indicates how much damage can be blocked.
         /// </summary>

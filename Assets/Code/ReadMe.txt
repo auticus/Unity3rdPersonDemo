@@ -322,3 +322,35 @@ Targeting Camera >> Transitions - Inherit Postion checked >> and blend hint (set
 
 Cinematic State Driven Camera >> Default Blend = ease In  and duration was 0.25 (0.5 default, this is how snappy it works)
 
+Dodging
+
+Goes into Player Targeting State
+He's looking at the input reader for the OnDodge there and then wires it on enter and exit.
+Then he creates OnDodge in the targeting state.
+
+He's basically only dodging in target state.  This isn't what I want to do.  I prefer the Dark Souls code method.
+
+He has a data type for DodgeDuration in the state machine and a DodgeLength that forces how far the player will go.
+This makes sense for this project because the animations don't control anything, and everything is done in code.
+
+His version of Dodging is also just dashing.
+
+Then he has a Dodge cool down so you can't just always dodge.
+
+Jumping
+He brings in a mixamo animation.  For jump he stops at the top of the animation and deletes everything from the right.
+Then on fall he gets rid of the jump to the left portion and keeps the fall to the right. 
+
+(its the same animation cut in half, one called jump one called fall)
+
+Puts the code in the jumping states.  
+His force receiver deals with the jumping.
+
+Advanced Dodging
+Mixamo - gets the dodge right, back, forward, and left.  These again are dash animations.  He makes player invulnerable while dodging.
+
+Uses a dodging blend tree 2D simple directional.  
+>> DodgeForward parameter
+>> DodgeRight parameter
+
+These let the dodge blend how it needs to.
