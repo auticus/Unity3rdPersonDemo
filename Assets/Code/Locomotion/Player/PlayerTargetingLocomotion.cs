@@ -19,6 +19,8 @@ namespace Unity3rdPersonDemo.Locomotion.Player
 
             var movementVector = CalculateRelativeMovementVector(forward, right);
             SetAnimationStateBasedOnInput(right, forward, deltaTime);
+
+            Debug.Log($"Moving {Character.TargetingMovementSpeed * movementVector}");
             HandleMovement(Character.TargetingMovementSpeed * movementVector, deltaTime);
             FaceTarget(Character.ObjectTargeter.CurrentTarget.transform);
         }
